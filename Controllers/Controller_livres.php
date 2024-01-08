@@ -20,5 +20,19 @@ class Controller_livres extends Controller
 
     }
 
+    public function action_livre_titre()
+    {
+        $m=Model::get_model();
+        $data=['livres'=>$m->get_livre_titre()];
+        $this->render("livre_titre",$data);
+    }
+
+    public function action_livre_titre_result()
+    {
+        $m=Model::get_model();
+        $data=['livre'=>$m->get_livre_titre_result()];
+        $this->render("livre_titre_result",$data);
+    }
+
     
 }

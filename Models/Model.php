@@ -74,6 +74,36 @@ public function get_all_commandes()
     return $requete->fetchAll(PDO::FETCH_OBJ);
 }
 
+public function get_livre_titre()
+{
+    {
+        try {
+            $requete = $this->bd->prepare('SELECT Titre_livre FROM livres;');
+            $requete->execute();
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+
+}
+
+public function get_livre_titre_result()
+{
+    {
+        try {
+            $requete = $this->bd->prepare("SELECT * FROM livres WHERE Id_Livre = '$Id_Livre';");
+            $requete->execute();
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+
+}
+
 
 
 }
