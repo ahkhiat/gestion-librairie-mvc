@@ -1,7 +1,7 @@
 
 
 
-<table id='table' class="table">
+<table id='table' class="table w-75 mx-auto">
 
     <thead>
         <th>ISBN</th>

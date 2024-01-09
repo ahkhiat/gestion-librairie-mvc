@@ -11,6 +11,12 @@ class Controller_home extends Controller
     {
         $this->render('home');
     }
+    public function action_login()
+    {
+        $m=Model::get_model();
+        $data=['login'=>$m->get_login()];
+        $this->render("login", $data);
 
+    }
 
 }

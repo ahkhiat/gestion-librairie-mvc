@@ -31,7 +31,19 @@ class Model
 
 // ----------------------------------PARTIE HOME--------------------------------------------//
 
-    
+public function get_login()
+{
+    $nom = $_POST["nom"];
+    $MdP = $_POST["MdP"];
+    try {
+        $requete = $this->bd->prepare('SELECT nom, MdP FROM utilisateur WHERE nom = :n AND MdP = :p');
+        $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
+        
+    } catch (PDOException $e) {
+        die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+    }
+    return $requete->fetchAll(PDO::FETCH_OBJ);
+}
 
 // ----------------------------------PARTIE LIVRE--------------------------------------------//
     public function get_all_livres()
