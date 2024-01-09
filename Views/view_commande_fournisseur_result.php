@@ -1,15 +1,17 @@
-<div>
-    <p> <?= isset($search)?'Recherche par '.$search:'' ?></p>
+
+
 <table id='table' class="table">
+
     <thead>
         <th>Titre</th>
         <th>Fournisseur</th>
         <th>Editeur</th>
-        <th>date achat</th>
-        <th>prix achat</th>
-        <th>quantité</th>
+        <th>Date achat</th>
+        <th>Prix achat</th>
+        <th>Quantité</th>
         
     </thead>
+    
     <?php  foreach($commandes as $c ): ?>
     <tr>
         <td><?=$c->Titre_livre?></td>
@@ -22,6 +24,5 @@
        
     </tr>
     <?php endforeach; ?>
+
 </table>
-</div>            
-              

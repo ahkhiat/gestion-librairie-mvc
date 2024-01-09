@@ -11,9 +11,9 @@
 </head>
 <body>
     
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-light navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Ma librairie</a>
+    <a class="navbar-brand" href="?controller=home">Ma librairie</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,8 +30,8 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="?controller=livres&action=all_livres">Tous les livres</a></li>
             <li><a class="dropdown-item" href="?controller=livres&action=livre_titre">Chercher par nom</a></li>
-            <li><a class="dropdown-item" href="#">Chercher par auteur</a></li>
-            <li><a class="dropdown-item" href="#">Chercher par éditeur</a></li>
+            <li><a class="dropdown-item" href="?controller=livres&action=livre_auteur">Chercher par auteur</a></li>
+            <li><a class="dropdown-item" href="?controller=livres&action=livre_editeur">Chercher par éditeur</a></li>
 
           </ul>
         </li>
@@ -41,8 +41,10 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="?controller=fournisseurs&action=all_fournisseurs">Tous les fournisseurs</a></li>
-            <li><a class="dropdown-item" href="#">Chercher par nom</a></li>
-            <li><a class="dropdown-item" href="#">Chercher par ville</a></li>
+            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_nom">Chercher par nom</a></li>
+            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_ville">Chercher par ville</a></li>
+            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_pays">Chercher par pays</a></li>
+
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -51,8 +53,10 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="?controller=commandes&action=all_commandes">Toutes les commandes</a></li>
-            <li><a class="dropdown-item" href="#">Chercher par livre</a></li>
-            <li><a class="dropdown-item" href="#">Chercher par fournisseur</a></li>
+            <li><a class="dropdown-item" href="?controller=commandes&action=commande_editeur">Chercher par éditeur</a></li>
+            <li><a class="dropdown-item" href="?controller=commandes&action=commande_fournisseur">Chercher par fournisseur</a></li>
+            <li><a class="dropdown-item" href="?controller=commandes&action=commande_date">Chercher par date</a></li>
+
           </ul>
         </li>
       </ul>

@@ -1,6 +1,5 @@
 
 
-
 <table id='table' class="table">
 
     <thead>

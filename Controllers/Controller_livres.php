@@ -30,9 +30,35 @@ class Controller_livres extends Controller
     public function action_livre_titre_result()
     {
         $m=Model::get_model();
-        $data=['livre'=>$m->get_livre_titre_result()];
+        $data=['livres'=>$m->get_livre_titre_result()];
         $this->render("livre_titre_result",$data);
     }
 
+    public function action_livre_auteur()
+    {
+        $m=Model::get_model();
+        $data=['livres'=>$m->get_livre_auteur()];
+        $this->render("livre_auteur",$data);
+    }
+
+    public function action_livre_auteur_result()
+    {
+        $m=Model::get_model();
+        $data=['livres'=>$m->get_livre_auteur_result()];
+        $this->render("livre_auteur_result",$data);
+    }
+    public function action_livre_editeur()
+    {
+        $m=Model::get_model();
+        $data=['livres'=>$m->get_livre_editeur()];
+        $this->render("livre_editeur",$data);
+    }
+
+    public function action_livre_editeur_result()
+    {
+        $m=Model::get_model();
+        $data=['livres'=>$m->get_livre_editeur_result()];
+        $this->render("livre_editeur_result",$data);
+    }
     
 }
