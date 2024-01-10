@@ -63,7 +63,7 @@
 
 
       </ul>
-      <a class="nav-link" href="?controller=home&action=login">Pricing</a>
+      <a class="nav-link" href="?controller=home&action=login">Connexion</a>
     </div>
   </div>
 </nav>

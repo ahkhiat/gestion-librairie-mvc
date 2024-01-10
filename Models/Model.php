@@ -31,25 +31,80 @@ class Model
 
 // ----------------------------------PARTIE HOME--------------------------------------------//
 
+
+
+public function get_register()
+{
+    // $nom = $_POST["nom"];
+    // $MdP = $_POST["MdP"];
+    if(isset($_POST['envoi'])) {
+        if (!empty($_POST['nom']) AND !empty($_POST['MdP'])) {
+            $nom = htmlspecialchars($_POST['nom']);
+            $MdP = sha1($_POST['MdP']);
+
+                try {
+                    $insertUser = $this->bd->prepare('INSERT INTO utilisateur(nom, MdP) VALUES(:n, :p');
+                    $insertUser->execute(array($nom, $MdP));
+
+                    $requete = $this->bd->prepare('SELECT nom, MdP FROM utilisateur WHERE nom = :n AND MdP = :p');
+                    $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
+                    }
+                catch (PDOException $e) {
+                    die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+                    }
+                return $requete->fetchAll(PDO::FETCH_OBJ);
+
+            if (!$requete->rowCount() > 0) {
+                $_SESSION['nom'] = $nom;
+                $_SESSION['MdP'] = $MdP;
+                $_SESSION['id'] = $requete->fetch()['id'];
+            }
+            echo $_SESSION['id'];
+            
+        } else {
+    echo "Veuillez completer tous les champs";
+        }
+    }
+}
+
 public function get_login()
 {
-    $nom = $_POST["nom"];
-    $MdP = $_POST["MdP"];
-    try {
-        $requete = $this->bd->prepare('SELECT nom, MdP FROM utilisateur WHERE nom = :n AND MdP = :p');
-        $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
-        
-    } catch (PDOException $e) {
-        die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+    session_start();
+    if(isset($_POST['envoi'])) {
+        if (!empty($_POST['nom']) AND !empty($_POST['MdP'])) {
+            $nom = htmlspecialchars($_POST['nom']);
+            $MdP = sha1($_POST['MdP']);
+
+                try {
+                    $requete = $this->bd->prepare('SELECT nom, MdP FROM utilisateur WHERE nom = :n AND MdP = :p');
+                    $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
+                    }
+                catch (PDOException $e) {
+                    die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+                    }
+                return $requete->fetchAll(PDO::FETCH_OBJ);
+
+            if (!$requete->rowCount() > 0) {
+                $_SESSION['nom'] = $nom;
+                $_SESSION['MdP'] = $MdP;
+                $_SESSION['id'] = $requete->fetch()['id'];
+                header('Location: index.php');
+            } else {
+                echo "Votre mot de passe ou votre nom est incorrect";
+            }
+            echo $_SESSION['id'];
+            
+        } else {
+    echo "Veuillez completer tous les champs";
+        }
     }
-    return $requete->fetchAll(PDO::FETCH_OBJ);
 }
 
 // ----------------------------------PARTIE LIVRE--------------------------------------------//
     public function get_all_livres()
     {
         try {
-            $requete = $this->bd->prepare('SELECT * FROM livres');
+            $requete = $this->bd->prepare('SELECT * FROM livres ORDER BY Titre_livre ASC');
             $requete->execute();
             
         } catch (PDOException $e) {
@@ -62,7 +117,7 @@ public function get_login()
 {
     {
         try {
-            $requete = $this->bd->prepare('SELECT DISTINCT Titre_livre FROM livres;');
+            $requete = $this->bd->prepare('SELECT DISTINCT Titre_livre FROM livres ORDER BY Titre_livre ASC');
             $requete->execute();
             
         } catch (PDOException $e) {
@@ -92,7 +147,7 @@ public function get_livre_auteur()
 {
     {
         try {
-            $requete = $this->bd->prepare("SELECT Nom_auteur FROM livres;");
+            $requete = $this->bd->prepare("SELECT Nom_auteur FROM livres ORDER BY Nom_auteur ASC");
             $requete->execute();
 
             
@@ -108,7 +163,7 @@ public function get_livre_auteur_result()
     $choixAuteur = $_POST["choixAuteur"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT * FROM livres WHERE Nom_auteur = :t ");
+            $requete = $this->bd->prepare("SELECT * FROM livres WHERE Nom_auteur = :t ORDER BY Titre_livre ASC");
             $requete->execute(array(':t'=> $choixAuteur));
             
         } catch (PDOException $e) {
@@ -122,7 +177,7 @@ public function get_livre_editeur()
 {
     {
         try {
-            $requete = $this->bd->prepare("SELECT Editeur FROM livres;");
+            $requete = $this->bd->prepare("SELECT DISTINCT Editeur FROM livres ORDER BY Editeur ASC");
             $requete->execute();
 
             
@@ -138,7 +193,7 @@ public function get_livre_editeur_result()
     $choixEditeur = $_POST["choixEditeur"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT * FROM livres WHERE Editeur = :t ");
+            $requete = $this->bd->prepare("SELECT * FROM livres WHERE Editeur = :t ORDER BY Titre_livre ASC");
             $requete->execute(array(':t'=> $choixEditeur));
             
         } catch (PDOException $e) {
@@ -153,7 +208,7 @@ public function get_livre_editeur_result()
 public function get_all_fournisseurs()
 {
     try {
-        $requete = $this->bd->prepare('SELECT * FROM fournisseurs');
+        $requete = $this->bd->prepare('SELECT * FROM fournisseurs ORDER BY Raison_sociale ASC');
         $requete->execute();
         
     } catch (PDOException $e) {
@@ -166,7 +221,7 @@ public function get_fournisseur_nom()
 {
     {
         try {
-            $requete = $this->bd->prepare("SELECT Raison_sociale FROM fournisseurs;");
+            $requete = $this->bd->prepare("SELECT Raison_sociale FROM fournisseurs ORDER BY Raison_sociale ASC");
             $requete->execute();
 
             
@@ -196,7 +251,7 @@ public function get_fournisseur_ville()
 {
     {
         try {
-            $requete = $this->bd->prepare("SELECT Localite FROM fournisseurs;");
+            $requete = $this->bd->prepare("SELECT DISTINCT Localite FROM fournisseurs ORDER BY Localite ASC");
             $requete->execute();
 
             
@@ -212,7 +267,7 @@ public function get_fournisseur_ville_result()
     $choixFournisseur = $_POST["choixFournisseur"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT * FROM fournisseurs WHERE Localite = :t ");
+            $requete = $this->bd->prepare("SELECT * FROM fournisseurs WHERE Localite = :t ORDER BY Raison_sociale ASC");
             $requete->execute(array(':t'=> $choixFournisseur));
             
         } catch (PDOException $e) {
@@ -242,7 +297,7 @@ public function get_fournisseur_pays_result()
     $choixFournisseur = $_POST["choixFournisseur"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT * FROM fournisseurs WHERE Pays = :t ");
+            $requete = $this->bd->prepare("SELECT * FROM fournisseurs WHERE Pays = :t ORDER BY Raison_sociale ASC");
             $requete->execute(array(':t'=> $choixFournisseur));
             
         } catch (PDOException $e) {
@@ -255,7 +310,7 @@ public function get_fournisseur_pays_result()
 public function get_all_commandes()
 {
     try {
-        $requete = $this->bd->prepare('SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre;
+        $requete = $this->bd->prepare('SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre ORDER BY Titre_livre ASC
         ');
         $requete->execute();
         
@@ -269,7 +324,7 @@ public function get_commande_editeur()
 {
     {
         try {
-            $requete = $this->bd->prepare("SELECT Editeur FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre;");
+            $requete = $this->bd->prepare("SELECT Editeur FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre ORDER BY Editeur");
             $requete->execute();
 
             
@@ -285,7 +340,7 @@ public function get_commande_editeur_result()
     $choixCommande = $_POST["choixCommande"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Editeur = :t ");
+            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Editeur = :t ORDER BY Titre_livre ASC");
             $requete->execute(array(':t'=> $choixCommande));
             
         } catch (PDOException $e) {
@@ -299,7 +354,7 @@ public function get_commande_fournisseur()
 {
     {
         try {
-            $requete = $this->bd->prepare("SELECT Raison_sociale FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre;");
+            $requete = $this->bd->prepare("SELECT Raison_sociale FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre ORDER BY Raison_sociale ASC");
             $requete->execute();
 
             
@@ -315,7 +370,7 @@ public function get_commande_fournisseur_result()
     $choixCommande = $_POST["choixCommande"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Raison_sociale = :t ");
+            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Raison_sociale = :t ORDER BY Titre_livre ASC");
             $requete->execute(array(':t'=> $choixCommande));
             
         } catch (PDOException $e) {
@@ -329,7 +384,7 @@ public function get_commande_date()
 {
     {
         try {
-            $requete = $this->bd->prepare("SELECT DISTINCT Date_achat FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre;");
+            $requete = $this->bd->prepare("SELECT DISTINCT Date_achat FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre ORDER BY Date_achat");
             $requete->execute();
 
             
@@ -345,7 +400,7 @@ public function get_commande_date_result()
     $choixCommande = $_POST["choixCommande"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Date_achat = :t ");
+            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Date_achat = :t ORDER BY Titre_livre ASC");
             $requete->execute(array(':t'=> $choixCommande));
             
         } catch (PDOException $e) {
