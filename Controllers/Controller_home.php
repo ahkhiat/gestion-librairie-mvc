@@ -21,6 +21,7 @@ class Controller_home extends Controller
     {
         $_SESSION=array();
         session_destroy();
+        
 
         $this->render('logout');
     }

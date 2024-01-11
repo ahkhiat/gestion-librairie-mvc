@@ -1,3 +1,5 @@
+<!-- <script>location.reload();</script> -->
+
 <?php
 
 $_SESSION["nom"] = $login[0]->nom;
