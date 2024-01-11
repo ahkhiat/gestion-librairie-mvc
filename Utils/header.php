@@ -1,4 +1,14 @@
 <!-- header.php -->
+<?php
+session_start();
+
+// if (isset($login->nom) && $login->prenom) {
+// $nom = $login->nom;
+// $prenom = $login->prenom;
+// }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +33,10 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="?controller=home">Home</a>
         </li>
-        
+
+        <?php
+        if(isset ($_SESSION["nom"])) 
+        {echo '
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Livres
@@ -60,10 +73,23 @@
 
           </ul>
         </li>
-
-
       </ul>
-      <a class="nav-link" href="?controller=home&action=login">Connexion</a>
+
+        ';} ?>
+
+    <span class="navbar-text">
+      <a class="nav-link"><?php if(isset ($_SESSION["nom"])) {echo $_SESSION["prenom"] . "<br>" . $_SESSION["nom"] . "<br>";}?> </a>
+      <?php  ?>
+    </span>
+      <?php 
+        if(isset ($_SESSION["nom"]))
+        {
+          echo "<a class='nav-link' href='?controller=home&action=deconnexion'>Deconnexion</a>";
+        } else {
+          echo "<a class='nav-link' href='?controller=home&action=connexion'>Connexion</a>";
+        }
+      ?>
+      
     </div>
   </div>
 </nav>

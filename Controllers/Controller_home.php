@@ -11,20 +11,27 @@ class Controller_home extends Controller
     {
         $this->render('home');
     }
-    public function action_login()
+
+    public function action_connexion()
     {
-        
-        $m=Model::get_model();
-        $data=['login'=>$m->get_login()];
-        $this->render("login", $data);
-
+        $this->render('connexion');
     }
-    // public function action_login_process()
-    // {
-    //     $m=Model::get_model();
-    //     $data=['login'=>$m->get_login_process()];
-    //     $this->render("login", $data);
 
-    // }
+    public function action_deconnexion()
+    {
+        $_SESSION=array();
+        session_destroy();
+
+        $this->render('logout');
+    }
+
+    public function action_connexion_requete()
+    {
+        $m=Model::get_model();
+        $data=['login'=>$m->get_connexion($_POST['nom'], $_POST['MdP'])];
+        $this->render("login", $data);
+        
+    }
+    
 
 }

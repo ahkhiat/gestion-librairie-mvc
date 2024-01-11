@@ -1,18 +1,12 @@
-<div class="text-center">
-  <h2>Connexion</h2>
-</div>
+<?php
+
+$_SESSION["nom"] = $login[0]->nom;
+$_SESSION["prenom"] = $login[0]->prenom;
+$_SESSION["id"] = $login[0]->idUtilisateur;
+$_SESSION["statut"] = $login[0]->Statut;
+
+?>
+
 <div class="w-25 mx-auto mt-5">
-<form method="POST" action="">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Nom</label>
-    <input type="text" class="form-control" id="nom" aria-describedby="emailHelp" name="nom" >
-    <small id="nom" class="form-text text-muted">Votre nom utilisé lors de l'inscription</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Mot de passe</label>
-    <input type="password" class="form-control" id="MdP" name="MdP">
-  </div>
-  
-  <button type="submit" class="btn btn-primary mt-3" name="envoi">Submit</button>
-</form>
+<h4>Bonjour <strong><?php echo $_SESSION["prenom"]; ?></strong>, ça fait un bail ! </h4>
 </div>

@@ -2,6 +2,8 @@
 
 class Model
 {
+
+    
     private $bd;
 
     private static $instance=null;
@@ -21,7 +23,9 @@ class Model
 
     public static function get_model()
     {
-
+        // session_start();
+        // $_SESSION["nom"] = "Leung";
+        // $_SESSION["prenom"] = "Thierry";
         if(is_null(self::$instance))
         {
             self::$instance=new Model();
@@ -67,38 +71,21 @@ public function get_register()
     }
 }
 
-public function get_login()
-{
-    session_start();
-    if(isset($_POST['envoi'])) {
-        if (!empty($_POST['nom']) AND !empty($_POST['MdP'])) {
-            $nom = htmlspecialchars($_POST['nom']);
-            $MdP = sha1($_POST['MdP']);
-
-                try {
-                    $requete = $this->bd->prepare('SELECT nom, MdP FROM utilisateur WHERE nom = :n AND MdP = :p');
-                    $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
-                    }
-                catch (PDOException $e) {
-                    die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
-                    }
-                return $requete->fetchAll(PDO::FETCH_OBJ);
-
-            if (!$requete->rowCount() > 0) {
-                $_SESSION['nom'] = $nom;
-                $_SESSION['MdP'] = $MdP;
-                $_SESSION['id'] = $requete->fetch()['id'];
-                header('Location: index.php');
-            } else {
-                echo "Votre mot de passe ou votre nom est incorrect";
-            }
-            echo $_SESSION['id'];
+public function get_connexion()
+    
+    {
+        try {
+            $nom = $_POST["nom"];
+            $MdP = $_POST["MdP"];
+            $requete = $this->bd->prepare("SELECT * FROM utilisateur WHERE nom = :n AND MdP = :p");
+            $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
+        
             
-        } else {
-    echo "Veuillez completer tous les champs";
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
         }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
     }
-}
 
 // ----------------------------------PARTIE LIVRE--------------------------------------------//
     public function get_all_livres()
