@@ -87,6 +87,41 @@ public function get_connexion()
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
 
+public function get_update()
+    
+    {
+        try {
+            
+            $id = $_SESSION["id"];
+            $requete = $this->bd->prepare("SELECT * FROM utilisateur WHERE idUtilisateur = :id" );
+            $requete->execute(array(':id' => $id));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+
+public function get_update_requete()
+    
+    {
+        try {
+            $nom = $_POST["nom"];
+            $prenom = $_POST["prenom"];
+            $age = $_POST["age"];
+            $id = $_POST["id"];
+            $requete = $this->bd->prepare("UPDATE utilisateur SET nom = :n, prenom = :p, age = :a WHERE idUtilisateur = :id" );
+            $requete->execute(array(':n'=> $nom, ':p'=> $prenom, ':a'=> $age, ':id' => $id));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+
+
 // ----------------------------------PARTIE LIVRE--------------------------------------------//
     public function get_all_livres()
     {

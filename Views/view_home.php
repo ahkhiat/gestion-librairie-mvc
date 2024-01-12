@@ -1,23 +1,11 @@
-<h1>Bienvenue dans notre librairie</h1>
 
 
+
+<div class="mt-5 text-center">
 <?php
-
-// if (isset($_SESSION["prenom"]) && isset($_SESSION["nom"]))  {
-
-//     echo $_SESSION["prenom"] . $_SESSION["nom"];
-
-// }
-
-// echo "data" . "<br>";
-// var_dump($data);
-
-// echo "<br>";
-
-if (isset($_SESSION['prenom'])) {
-
-echo "Bonjour, " . $_SESSION['prenom'] . "&nbsp" . $_SESSION['nom'];
-
-
-}
-
+if (isset($_SESSION['prenom'])) 
+    {
+        echo "<p class='display-5'>Bonjour, <strong>"  . $_SESSION['prenom'] . "&nbsp" . $_SESSION['nom'] . "</strong>, bienvenue dans notre librairie</p>";
+    }   
+    ?>
+</div>

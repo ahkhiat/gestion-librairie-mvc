@@ -21,8 +21,6 @@ class Controller_home extends Controller
     {
         $_SESSION=array();
         session_destroy();
-        
-
         $this->render('logout');
     }
 
@@ -32,6 +30,18 @@ class Controller_home extends Controller
         $data=['login'=>$m->get_connexion($_POST['nom'], $_POST['MdP'])];
         $this->render("login", $data);
         
+    }
+    public function action_update_utilisateur()
+    {
+        $m=Model::get_model();
+        $data=['login'=>$m->get_update()];
+        $this->render('update_utilisateur');
+    }
+    public function action_update_utilisateur_requete()
+    {
+        $m=Model::get_model();
+        $data=['login'=>$m->get_update_requete($_POST['nom'], $_POST['prenom'], $_POST["age"])];
+        $this->render("update_done", $data);
     }
     
 

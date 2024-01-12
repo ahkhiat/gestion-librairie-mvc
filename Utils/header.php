@@ -22,7 +22,7 @@ session_start();
 </head>
 <body>
     
-<nav class="navbar navbar-light navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-light navbar-expand-lg " style="background-color: #e3f2fd;">
   <div class="container-fluid">
     <a class="navbar-brand" href="?controller=home">Ma librairie</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,23 +73,27 @@ session_start();
 
           </ul>
         </li>
+         ';} ?>
       </ul>
 
-        ';} ?>
+       
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="?controller=home&action=update_utilisateur"><?php if(isset ($_SESSION["nom"])) {echo "<strong>" . substr($_SESSION["prenom"], 0, 1) . substr($_SESSION["nom"], 0, 1) . "</strong>";}?> </a>
+        </li> 
+        <li>
+          <?php 
+              if(isset ($_SESSION["nom"]))
+              {
+                echo "<a class='nav-link' href='?controller=home&action=deconnexion'>Deconnexion</a>";
+              } else {
+                echo "<a class='nav-link' href='?controller=home&action=connexion'>Connexion</a>";
+              } ?>
+        </li>
+        </ul>
+      </div>
 
-    <span class="navbar-text">
-      <a class="nav-link"><?php if(isset ($_SESSION["nom"])) {echo $_SESSION["prenom"] . "<br>" . $_SESSION["nom"] . "<br>";}?> </a>
-      <?php  ?>
-    </span>
-      <?php 
-        if(isset ($_SESSION["nom"]))
-        {
-          echo "<a class='nav-link' href='?controller=home&action=deconnexion'>Deconnexion</a>";
-        } else {
-          echo "<a class='nav-link' href='?controller=home&action=connexion'>Connexion</a>";
-        }
-      ?>
-      
     </div>
   </div>
 </nav>
