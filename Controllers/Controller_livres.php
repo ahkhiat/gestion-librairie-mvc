@@ -60,5 +60,18 @@ class Controller_livres extends Controller
         $data=['livres'=>$m->get_livre_editeur_result()];
         $this->render("livre_editeur_result",$data);
     }
+    public function action_update_livre()
+    {
+        $m=Model::get_model();
+        $data=['livre'=>$m->get_livre_update()];
+        $this->render("update_livre",$data);
+    }
+
+    public function action_update_livre_requete()
+    {
+        $m=Model::get_model();
+        $data=['livre'=>$m->get_livre_update_requete()];
+        $this->render("update_livre_result",$data);
+    }
     
 }

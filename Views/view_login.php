@@ -9,10 +9,12 @@ $_SESSION["statut"] = $login[0]->Statut;
 $_SESSION["age"] = $login[0]->age;
 
 // var_dump($login);
+
 ?>
 
 <div class="w-25 mx-auto mt-5">
 <h4>Bonjour <strong><?php echo $_SESSION["prenom"]; ?></strong>, ça fait un bail ! </h4>
 </div>
+
 
 

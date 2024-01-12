@@ -2,6 +2,9 @@
 <h3 class="mt-3">Modification de l'utilisateur</h3>
 
 <form class= "mt-5" action="?controller=home&action=update_utilisateur_requete" method="POST">
+
+
+
   <div class="form-group">
     <label for="exampleInputEmail1">Nom</label>
     <input type="text" name="nom" class="form-control" id="nom" aria-describedby="nom" value="<?php echo $_SESSION["nom"] ?>">

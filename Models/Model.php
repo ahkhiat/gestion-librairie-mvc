@@ -165,6 +165,43 @@ public function get_livre_titre_result()
     }
 }
 
+public function get_livre_update()
+{
+    $choixLivre = $_POST["id"];
+    {
+        try {
+            $requete = $this->bd->prepare("SELECT * FROM livres WHERE Id_Livre = :i ");
+            $requete->execute(array(':i'=> $choixLivre));
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
+
+public function get_livre_update_requete()
+{
+    {
+        try {
+            
+            $requete = $this->bd->prepare("UPDATE livres SET ISBN = :i, Titre_livre = :t, Theme_livre = :th, Nbr_pages_livre = :nb, Format_livre = :f, Nom_auteur = :n, Prenom_auteur = :p, Editeur = :e, Annee_edition = :a, Prix_vente = :px, Langue_livre = :l WHERE Id_Livre = :id" );
+            $requete->execute(array(':i'=> $_POST["ISBN"], ':t'=> $_POST["Titre_livre"], 
+                                    ':th'=> $_POST["Theme_livre"], ':nb' => $_POST["Nbr_pages_livre"], 
+                                    ':f'=> $_POST["Format_livre"], ':n'=> $_POST["Nom_auteur"], 
+                                    ':p'=> $_POST["Prenom_auteur"], ':e'=> $_POST["Editeur"], 
+                                    ':a'=> $_POST["Annee_edition"], ':px'=> $_POST["Prix_vente"], 
+                                    ':l'=> $_POST["Langue_livre"], ':id'=> $_POST["Id_Livre"]));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
+
+
 public function get_livre_auteur()
 {
     {
