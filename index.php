@@ -10,7 +10,7 @@ require_once('Models/Model.php');
 require_once('Controllers/Controller.php');
 require_once('Utils/header.php');
 
-$controllers=['home','livres', 'fournisseurs', 'commandes'];
+$controllers=['home','livres', 'fournisseurs', 'commandes', 'utilisateurs'];
 $controller_default='home';
 
 if(isset($_GET['controller']) and in_array($_GET['controller'],$controllers))

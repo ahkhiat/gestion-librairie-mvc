@@ -5,7 +5,7 @@
 <script>setTimeout(() => {
 window.location.href = '?controller=home';
 
-}, 1000);</script>
+}, 2000);</script>
 
 <script>
 

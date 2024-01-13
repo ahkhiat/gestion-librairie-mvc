@@ -44,5 +44,11 @@ class Controller_home extends Controller
         $this->render("update_done", $data);
     }
     
+    // public function action_all_utilisateurs()
+    // {
+    //     $m=Model::get_model();
+    //     $data=['utilisateurs'=>$m->get_all_utilisateurs()];
+    //     $this->render("all_utilisateurs",$data);
 
+    // }
 }

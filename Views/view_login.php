@@ -16,5 +16,10 @@ $_SESSION["age"] = $login[0]->age;
 <h4>Bonjour <strong><?php echo $_SESSION["prenom"]; ?></strong>, ça fait un bail ! </h4>
 </div>
 
+<script>setTimeout(() => {
+window.location.href = '?controller=home&action=home';
+
+}, 2000);</script>
+
 
 

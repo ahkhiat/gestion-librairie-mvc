@@ -120,7 +120,19 @@ public function get_update_requete()
         }
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
+// ----------------------------------PARTIE UTILISATEURS--------------------------------------------//
 
+public function get_all_utilisateurs()
+{
+    try {
+        $requete = $this->bd->prepare('SELECT * FROM utilisateur ORDER BY nom ASC');
+        $requete->execute();
+        
+    } catch (PDOException $e) {
+        die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+    }
+    return $requete->fetchAll(PDO::FETCH_OBJ);
+}
 
 // ----------------------------------PARTIE LIVRE--------------------------------------------//
     public function get_all_livres()
