@@ -165,9 +165,33 @@ public function get_livre_titre_result()
     }
 }
 
+public function get_livre_ajout()
+{
+    {
+        try {
+            
+            $requete = $this->bd->prepare("INSERT INTO livres (Id_livre, ISBN, Titre_livre, Theme_livre, 
+                                                                Nbr_pages_livre, Format_livre, Nom_auteur, 
+                                                                Prenom_auteur, Editeur, Annee_edition, 
+                                                                Prix_vente, Langue_livre) VALUES (NULL, :i, :t, :th, :nb, :f, :n, :p, :e, :a, :px, :l)");
+            $requete->execute(array(':i'=> $_POST["ISBN"], ':t'=> $_POST["Titre_livre"], 
+                                    ':th'=> $_POST["Theme_livre"], ':nb' => $_POST["Nbr_pages_livre"], 
+                                    ':f'=> $_POST["Format_livre"], ':n'=> $_POST["Nom_auteur"], 
+                                    ':p'=> $_POST["Prenom_auteur"], ':e'=> $_POST["Editeur"], 
+                                    ':a'=> $_POST["Annee_edition"], ':px'=> $_POST["Prix_vente"], 
+                                    ':l'=> $_POST["Langue_livre"]));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
+
 public function get_livre_update()
 {
-    $choixLivre = $_POST["id"];
+    $choixLivre = $_GET["id"];
     {
         try {
             $requete = $this->bd->prepare("SELECT * FROM livres WHERE Id_Livre = :i ");
@@ -200,6 +224,23 @@ public function get_livre_update_requete()
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
 }
+
+public function get_livre_delete()
+{
+    $choixLivre = $_GET["id"];
+    {
+        try {
+            $requete = $this->bd->prepare("DELETE FROM livres WHERE Id_Livre = :i ");
+            $requete->execute(array(':i'=> $choixLivre));
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+    echo "}";
+}
+
 
 
 public function get_livre_auteur()

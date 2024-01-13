@@ -1,4 +1,4 @@
-<div class="mx-auto w-75">
+<div class="mx-auto w-50">
 <h3 class="mt-3">Modification du livre</h3>
 
 <!-- <?php var_dump($livre)?> -->

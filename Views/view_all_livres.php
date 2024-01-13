@@ -1,6 +1,18 @@
-<div>
+
+
     <p> <?= isset($search)?'Recherche par '.$search:'' ?></p>
-<table id='table' class="table table-striped w-75 mx-auto">
+
+    <script type="text/javascript">
+    function confirmation() {
+      return confirm("Supprimer ce livre ?");
+    }
+</script>
+<div class="w-75 mx-auto">
+<div class="w-25">
+    <a href="?controller=livres&action=livre_ajout"><button class="mt-3 btn btn-secondary">Ajouter un livre</button></a>
+</div>
+<table id='table' class="table table-striped ">
+
     <thead>
         <th>ISBN</th>
         <th>Titre</th>
@@ -29,19 +41,22 @@
         <td><?=$l->Annee_edition?></td>
         <td><?=$l->Prix_vente?></td>
         <td><?=$l->Langue_livre?></td>
-        <td class="d-flex flex-row">
-            <form action="?controller=livres&action=update_livre" method="POST">
-                <input type="hidden" name="id" value="<?=$l->Id_Livre?>">    
-                <button type="submit" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-fill"></i></button>
-            </form>
-            <form action="?controller=livres&action=update_livre" method="POST">
-                <input type="hidden" name="id" value="<?=$l->Id_Livre?>">    
-                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
-            </form>
+        <td>
+            <div class="d-flex flex-row">
+            
+                <a href="?controller=livres&action=update_livre&id=<?=$l->Id_Livre?>">
+                    <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
+                <a href="?controller=livres&action=delete_livre&id=<?=$l->Id_Livre?>">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-pencil-fill"></i></button></a>
+            </div>
         </td>
        
     </tr>
     <?php endforeach; ?>
 </table>
-</div>            
+
+
+</div>
+
+           
               

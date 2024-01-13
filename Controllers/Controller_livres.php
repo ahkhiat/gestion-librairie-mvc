@@ -60,6 +60,20 @@ class Controller_livres extends Controller
         $data=['livres'=>$m->get_livre_editeur_result()];
         $this->render("livre_editeur_result",$data);
     }
+    public function action_livre_ajout()
+    {
+        // $m=Model::get_model();
+        // $data=['livre'=>$m->get_livre_ajout()];
+        $this->render("livre_ajout");
+    }
+    public function action_livre_ajout_requete()
+    {
+        $m=Model::get_model();
+        $data=['livre'=>$m->get_livre_ajout()];
+        $this->render("livre_ajout_result",$data);
+    }
+
+
     public function action_update_livre()
     {
         $m=Model::get_model();
@@ -72,6 +86,13 @@ class Controller_livres extends Controller
         $m=Model::get_model();
         $data=['livre'=>$m->get_livre_update_requete()];
         $this->render("update_livre_result",$data);
+    }
+    public function action_delete_livre()
+    {
+        $m=Model::get_model();
+        $data=['livres'=>$m->get_livre_delete()];
+        $data=['livres'=>$m->get_all_livres()];
+        $this->render("all_livres",$data);
     }
     
 }
