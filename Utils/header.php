@@ -74,7 +74,18 @@ session_start();
 
           </ul>
         </li>
+        
+        
+
          ';} ?>
+         <?php 
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin") 
+            {echo '<li class="nav-item">
+                  <a class="nav-link" href="?controller=utilisateurs&action=all_utilisateurs">Utilisateurs</a>
+                  </li>';} 
+        ?>
+
+
       </ul>
 
        

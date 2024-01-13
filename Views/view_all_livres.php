@@ -7,8 +7,8 @@
       return confirm("Supprimer ce livre ?");
     }
 </script>
-<div class="w-75 mx-auto">
-<div class="w-25">
+<div class="w-75 mx-auto d-flex flex-column">
+<div class="align-self-end">
     <a href="?controller=livres&action=livre_ajout"><button class="mt-3 btn btn-secondary">Ajouter un livre</button></a>
 </div>
 <table id='table' class="table table-striped ">
