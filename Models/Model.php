@@ -76,7 +76,7 @@ public function get_connexion()
     {
         try {
             $nom = $_POST["nom"];
-            $MdP = $_POST["MdP"];
+            $MdP = md5($_POST["MdP"]);
             $requete = $this->bd->prepare("SELECT * FROM utilisateur WHERE nom = :n AND MdP = :p");
             $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
         
@@ -134,6 +134,23 @@ public function get_all_utilisateurs()
     return $requete->fetchAll(PDO::FETCH_OBJ);
 }
 
+public function get_utilisateur_ajout()
+{
+    {
+        try {
+            
+            $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, nom, prenom, age,
+                                                                MdP, Statut) VALUES (NULL, :n, :p, :a, :mdp, :s)");
+            $requete->execute(array(':n'=> $_POST["nom"], ':p'=> $_POST["prenom"], 
+                                    ':a'=> $_POST["age"], ':mdp'=> md5($_POST["MdP"]), ':s'=> $_POST["statut"]));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
 // ----------------------------------PARTIE LIVRE--------------------------------------------//
     public function get_all_livres()
     {

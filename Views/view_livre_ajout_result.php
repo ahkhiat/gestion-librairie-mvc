@@ -1,6 +1,6 @@
 
 <div class="w-25 mx-auto mt-5">
-<h4>Le livre a été ajoutté ! </h4>
+<h4>Le livre a été ajouté ! </h4>
 </div>
 
 <script>setTimeout(() => {
