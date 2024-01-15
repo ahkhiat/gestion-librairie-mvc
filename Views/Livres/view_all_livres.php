@@ -25,7 +25,13 @@
         <th>Année d'édition</th>
         <th>Prix</th>
         <th>Langue</th>
+        <?php 
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin") 
+                {echo '
         <th>Action</th>
+        ';} 
+       ?>   
+
     </thead>
     <?php  foreach($livres as $l ): ?>
     <tr>
@@ -41,16 +47,21 @@
         <td><?=$l->Annee_edition?></td>
         <td><?=$l->Prix_vente?></td>
         <td><?=$l->Langue_livre?></td>
+
+        <?php 
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin") 
+                {echo '
+                
         <td>
             <div class="d-flex flex-row">
             
-                <a href="?controller=livres&action=update_livre&id=<?=$l->Id_Livre?>">
+                <a href="?controller=livres&action=update_livre&id='. $l->Id_Livre .'">
                     <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
-                <a href="?controller=livres&action=delete_livre&id=<?=$l->Id_Livre?>">
+                <a href="?controller=livres&action=delete_livre&id='. $l->Id_Livre .'">
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-pencil-fill"></i></button></a>
             </div>
-        </td>
-       
+        </td>';} 
+       ?>   
     </tr>
     <?php endforeach; ?>
 </table>

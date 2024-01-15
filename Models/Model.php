@@ -77,7 +77,7 @@ public function get_connexion()
         try {
             $nom = $_POST["nom"];
             $MdP = md5($_POST["MdP"]);
-            $requete = $this->bd->prepare("SELECT * FROM utilisateur WHERE nom = :n AND MdP = :p");
+            $requete = $this->bd->prepare("SELECT * FROM utilisateur  WHERE nom = :n AND MdP = :p");
             $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
         
             
@@ -120,6 +120,42 @@ public function get_update_requete()
         }
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function get_update_admin()
+    
+    {
+        try {
+            
+            $id = $_GET["id"];
+            $requete = $this->bd->prepare("SELECT * FROM utilisateur WHERE idUtilisateur = :id" );
+            $requete->execute(array(':id' => $id));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function get_update_admin_requete()
+    
+    {
+        try {
+            $nom = $_POST["nom"];
+            $prenom = $_POST["prenom"];
+            $age = $_POST["age"];
+            $statut = $_POST["Statut"];
+            $id = $_POST["id"];
+            $requete = $this->bd->prepare("UPDATE utilisateur SET nom = :n, prenom = :p, age = :a, Statut = :s WHERE idUtilisateur = :id" );
+            $requete->execute(array(':n'=> $nom, ':p'=> $prenom, ':a'=> $age, ':s' => $statut,':id' => $id));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+
 // ----------------------------------PARTIE UTILISATEURS--------------------------------------------//
 
 public function get_all_utilisateurs()
@@ -150,6 +186,22 @@ public function get_utilisateur_ajout()
         }
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
+}
+
+public function get_utilisateur_delete()
+{
+    $choixUtilisateur = $_GET["id"];
+    {
+        try {
+            $requete = $this->bd->prepare("DELETE FROM utilisateur WHERE idUtilisateur = :i ");
+            $requete->execute(array(':i'=> $choixUtilisateur));
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+    echo "}";
 }
 // ----------------------------------PARTIE LIVRE--------------------------------------------//
     public function get_all_livres()
