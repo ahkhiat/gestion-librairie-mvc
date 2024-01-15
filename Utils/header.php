@@ -22,8 +22,9 @@ session_start();
     <title>Document</title>
 </head>
 <body>
-    
-<nav class="navbar navbar-light navbar-expand-lg " style="background-color: #e3f2fd;">
+<div class="container pt-5">
+<nav class="navbar navbar-light navbar-expand-lg fixed-top" style="background-color: #e3f2fd;">
+
   <div class="container-fluid">
     <a class="navbar-brand" href="?controller=home">Ma librairie</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +37,7 @@ session_start();
         </li>
 
         <?php
-        if(isset ($_SESSION["nom"])) 
+        if(isset ($_SESSION["nom"])) // Affiche si la session existe
         {echo '
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -79,7 +80,7 @@ session_start();
 
          ';} ?>
          <?php 
-            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin") 
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin")  // affiche si l'utilisateur est un admin
             {echo '<li class="nav-item">
                   <a class="nav-link" href="?controller=utilisateurs&action=all_utilisateurs">Utilisateurs</a>
                   </li>';} 
@@ -91,6 +92,14 @@ session_start();
        
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+        <?php 
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin")  // affiche si l'utilisateur est un admin
+            {echo "<strong><a class='nav-link text-danger '>Mode Administrateur</a></strong>";} 
+        ?>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link" href="?controller=utilisateurs&action=update_utilisateur"><?php if(isset ($_SESSION["nom"])) {echo "<strong>" . substr($_SESSION["prenom"], 0, 1) . substr($_SESSION["nom"], 0, 1) . "</strong>";}?> </a>
         </li> 
@@ -111,6 +120,6 @@ session_start();
 </nav>
 
 
-
+</div>
 </body>
 </html>

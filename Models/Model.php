@@ -87,6 +87,25 @@ public function get_connexion()
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function get_register_requete()
+{
+    {
+        try {
+            
+            $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, nom, prenom, age,
+                                                                MdP, Statut) VALUES (NULL, :n, :p, :a, :mdp, NULL)");
+            $requete->execute(array(':n'=> $_POST["nom"], ':p'=> $_POST["prenom"], 
+                                    ':a'=> $_POST["age"], ':mdp'=> md5($_POST["MdP"])));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
+
+
 public function get_update()
     
     {
@@ -396,6 +415,81 @@ public function get_all_fournisseurs()
         die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
     }
     return $requete->fetchAll(PDO::FETCH_OBJ);
+}
+
+public function get_fournisseur_ajout()
+{
+    {
+        try {
+            
+            $requete = $this->bd->prepare("INSERT INTO fournisseurs (Id_fournisseur, Code_fournisseur, Raison_sociale, Rue_fournisseur, 
+                                                                Code_postal, Localite, Pays, 
+                                                                Tel_fournisseur, Url_fournisseur, Email_fournisseur, 
+                                                                Fax_fournisseur) VALUES (NULL, :c, :r, :rue, :co, :l, :p, :tel, :ur, :mail, :fax)");
+            $requete->execute(array(':c'=> $_POST["Code_fournisseur"], ':r'=> $_POST["Raison_sociale"], 
+                                    ':rue'=> $_POST["Rue_fournisseur"], ':co' => $_POST["Code_postal"], 
+                                    ':l'=> $_POST["Localite"], ':p'=> $_POST["Pays"], 
+                                    ':tel'=> $_POST["Tel_fournisseur"], ':ur'=> $_POST["Url_fournisseur"], 
+                                    ':mail'=> $_POST["Email_fournisseur"], ':fax'=> $_POST["Fax_fournisseur"]));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
+
+public function get_fournisseur_update()
+{
+    $choixFournisseur = $_GET["id"];
+    {
+        try {
+            $requete = $this->bd->prepare("SELECT * FROM fournisseurs WHERE Id_fournisseur = :i ");
+            $requete->execute(array(':i'=> $choixFournisseur));
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
+
+public function get_fournisseur_update_requete()
+{
+    {
+        try {
+            
+            $requete = $this->bd->prepare("UPDATE fournisseurs SET Code_fournisseur = :c, Raison_sociale = :rai, Rue_fournisseur = :rue, Code_postal = :code, Localite = :l, Pays = :p, Tel_fournisseur = :tel, Url_fournisseur = :ur, Email_fournisseur = :em, Fax_fournisseur = :fax WHERE Id_fournisseur = :id" );
+            $requete->execute(array(':c'=> $_POST["Code_fournisseur"], ':rai'=> $_POST["Raison_sociale"], 
+                                    ':rue'=> $_POST["Rue_fournisseur"], ':code' => $_POST["Code_postal"], 
+                                    ':l'=> $_POST["Localite"], ':p'=> $_POST["Pays"], 
+                                    ':tel'=> $_POST["Tel_fournisseur"], ':ur'=> $_POST["Url_fournisseur"], 
+                                    ':em'=> $_POST["Email_fournisseur"], ':fax'=> $_POST["Fax_fournisseur"],
+                                    ':id'=> $_POST['Id_fournisseur']));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
+
+public function get_fournisseur_delete()
+{
+    $choixFournisseur = $_GET["id"];
+    {
+        try {
+            $requete = $this->bd->prepare("DELETE FROM fournisseurs WHERE Id_fournisseur = :i ");
+            $requete->execute(array(':i'=> $choixFournisseur));
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+    echo "}";
 }
 
 public function get_fournisseur_nom()

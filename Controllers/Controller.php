@@ -19,7 +19,7 @@ abstract class Controller		//Ceci est le controleur par defaut
 		extract($data);								//Recupération des données à afficher
 
 		if(isset($_GET['controller'])) {
-					$controller_actif = lcfirst($_GET['controller']);
+					$controller_actif = ucfirst($_GET['controller']);
 		} else {
 					$controller_actif = 'Home';
 		}

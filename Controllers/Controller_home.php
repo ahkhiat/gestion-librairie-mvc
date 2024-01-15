@@ -17,6 +17,21 @@ class Controller_home extends Controller
         $this->render('connexion');
     }
 
+    public function action_register()
+    {
+        $this->render('register');
+    }
+    public function action_register_requete()
+    {
+        // if(empty($_POST["MdP"]) && $_POST["MdP"] == $_POST["MdP2"]) 
+        
+        $m=Model::get_model();
+        $data=['register'=>$m->get_register_requete()];
+        $data=['register'=>$m->get_connexion()];
+        $this->render("register_done", $data);
+        
+    }
+
     public function action_deconnexion()
     {
         $_SESSION=array();

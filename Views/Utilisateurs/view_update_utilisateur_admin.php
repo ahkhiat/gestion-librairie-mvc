@@ -20,7 +20,11 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Statut</label>
-    <input type="text" name="Statut" class="form-control" id="statut" aria-describedby="statut" value="<?php echo $utilisateur[0]->Statut ?>">
+    <select name="Statut" id="Statut" class="form-control">
+      <option value="Admin" <?php if($utilisateur[0]->Statut=="Admin") echo 'selected'; ?>>Admin</option>
+      <option value="Utilisateur" <?php if($utilisateur[0]->Statut=="Utilisateur") echo 'selected'; ?>>Utilisateur</option>
+    <!-- <input type="text" name="Statut" class="form-control" id="statut" aria-describedby="statut" value="<?php echo $utilisateur[0]->Statut ?>"> -->
+    </select>
   </div>
     
     <input type="hidden" name="id" class="form-control" id="hide" value="<?php echo $utilisateur[0]->idUtilisateur ?>">

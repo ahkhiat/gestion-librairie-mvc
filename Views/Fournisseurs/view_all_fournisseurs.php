@@ -1,6 +1,12 @@
 <div>
     <p> <?= isset($search)?'Recherche par '.$search:'' ?></p>
 
+    <script type="text/javascript">
+    function confirmation() {
+      return confirm("Supprimer ce livre ?");
+    }
+    </script>
+
 <div class="w-75 mx-auto d-flex flex-column">
 <div class="align-self-end">
 <a href="?controller=fournisseurs&action=fournisseur_ajout"><button class="mt-3 btn btn-secondary">Ajouter un fournisseur</button></a>
@@ -18,6 +24,12 @@
         <th>Url</th>
         <th>Email</th>
         <th>Fax</th>
+        <?php 
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin") 
+                {echo '
+        <th>Action</th>
+        ';} 
+       ?>
     </thead>
     <?php  foreach($fournisseurs as $f ): ?>
     <tr>
@@ -32,6 +44,20 @@
         <td><?=$f->Url_fournisseur?></td>
         <td><?=$f->Email_fournisseur?></td>
         <td><?=$f->Fax_fournisseur?></td>
+        <?php 
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin") 
+                {echo '
+                
+        <td>
+            <div class="d-flex flex-row">
+            
+                <a href="?controller=fournisseurs&action=fournisseur_update&id='. $f->Id_fournisseur .'">
+                    <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
+                <a href="?controller=fournisseurs&action=fournisseur_delete&id='. $f->Id_fournisseur .'">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-pencil-fill"></i></button></a>
+            </div>
+        </td>';} 
+       ?>  
        
     </tr>
     <?php endforeach; ?>

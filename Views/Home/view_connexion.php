@@ -14,5 +14,7 @@
   </div>
   
   <button type="submit" class="btn btn-primary mt-3" name="envoi">Submit</button>
+  <p>Pas de compte? <a href="?controller=home&action=register">s'enregistrer</a>.</p>
+
 </form>
 </div>
