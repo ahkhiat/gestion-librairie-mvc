@@ -18,7 +18,15 @@ abstract class Controller		//Ceci est le controleur par defaut
 	{
 		extract($data);								//Recupération des données à afficher
 
-		$file_name="Views/view_".$vue.'.php';
+		if(isset($_GET['controller'])) {
+					$controller_actif = lcfirst($_GET['controller']);
+		} else {
+					$controller_actif = 'Home';
+		}
+
+
+		$file_name="Views/" . $controller_actif . "/view_" . $vue.'.php';
+
 		if(file_exists($file_name))
 		{											//Si le fichier existe
 			require($file_name);					//Si oui on l'affiche
@@ -31,7 +39,7 @@ abstract class Controller		//Ceci est le controleur par defaut
 
 	protected function action_error($message)		// en cas d'erreur 
 	{
-		$data=['erreur'=>$message];
+		$data=['error'=>$message];
 		$this->render('error',$data);
 		die();										//Pour faire terminer le script vu qu'il y a une erreur
 	}

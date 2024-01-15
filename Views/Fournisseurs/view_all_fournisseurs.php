@@ -1,6 +1,11 @@
 <div>
     <p> <?= isset($search)?'Recherche par '.$search:'' ?></p>
-<table id='table' class="table table-striped w-75 mx-auto">
+
+<div class="w-75 mx-auto d-flex flex-column">
+<div class="align-self-end">
+<a href="?controller=fournisseurs&action=fournisseur_ajout"><button class="mt-3 btn btn-secondary">Ajouter un fournisseur</button></a>
+</div>
+<table id='table' class="table table-striped">
     <thead>
         <!-- <th>id</th> -->
         <th>Code fournisseur</th>
