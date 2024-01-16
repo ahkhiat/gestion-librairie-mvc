@@ -42,16 +42,16 @@ public function get_register()
     // $nom = $_POST["nom"];
     // $MdP = $_POST["MdP"];
     if(isset($_POST['envoi'])) {
-        if (!empty($_POST['nom']) AND !empty($_POST['MdP'])) {
-            $nom = htmlspecialchars($_POST['nom']);
+        if (!empty($_POST['email']) AND !empty($_POST['MdP'])) {
+            $email = htmlspecialchars($_POST['email']);
             $MdP = sha1($_POST['MdP']);
 
                 try {
-                    $insertUser = $this->bd->prepare('INSERT INTO utilisateur(nom, MdP) VALUES(:n, :p');
+                    $insertUser = $this->bd->prepare('INSERT INTO utilisateur(email, MdP) VALUES(:e, :p');
                     $insertUser->execute(array($nom, $MdP));
 
-                    $requete = $this->bd->prepare('SELECT nom, MdP FROM utilisateur WHERE nom = :n AND MdP = :p');
-                    $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
+                    $requete = $this->bd->prepare('SELECT email, MdP FROM utilisateur WHERE email = :e AND MdP = :p');
+                    $requete->execute(array(':e'=> $email, ':p'=> $MdP));
                     }
                 catch (PDOException $e) {
                     die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
@@ -59,7 +59,7 @@ public function get_register()
                 return $requete->fetchAll(PDO::FETCH_OBJ);
 
             if (!$requete->rowCount() > 0) {
-                $_SESSION['nom'] = $nom;
+                $_SESSION['email'] = $email;
                 $_SESSION['MdP'] = $MdP;
                 $_SESSION['id'] = $requete->fetch()['id'];
             }
@@ -75,10 +75,10 @@ public function get_connexion()
     
     {
         try {
-            $nom = $_POST["nom"];
+            $email = $_POST["email"];
             $MdP = md5($_POST["MdP"]);
-            $requete = $this->bd->prepare("SELECT * FROM utilisateur  WHERE nom = :n AND MdP = :p");
-            $requete->execute(array(':n'=> $nom, ':p'=> $MdP));
+            $requete = $this->bd->prepare("SELECT * FROM utilisateur  WHERE email = :e AND MdP = :p");
+            $requete->execute(array(':e'=> $email, ':p'=> $MdP));
         
             
         } catch (PDOException $e) {
@@ -90,11 +90,13 @@ public function get_connexion()
     public function get_register_requete()
 {
     {
+
+
         try {
             
-            $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, nom, prenom, age,
-                                                                MdP, Statut) VALUES (NULL, :n, :p, :a, :mdp, NULL)");
-            $requete->execute(array(':n'=> $_POST["nom"], ':p'=> $_POST["prenom"], 
+            $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, email ,nom, prenom, age,
+                                                                MdP, Statut) VALUES (NULL, :e, :n, :p, :a, :mdp, NULL)");
+            $requete->execute(array(':e'=> $_POST["email"],':n'=> $_POST["nom"], ':p'=> $_POST["prenom"], 
                                     ':a'=> $_POST["age"], ':mdp'=> md5($_POST["MdP"])));
         
             
@@ -126,12 +128,13 @@ public function get_update_requete()
     
     {
         try {
+            $email = $_POST["email"];
             $nom = $_POST["nom"];
             $prenom = $_POST["prenom"];
             $age = $_POST["age"];
             $id = $_POST["id"];
-            $requete = $this->bd->prepare("UPDATE utilisateur SET nom = :n, prenom = :p, age = :a WHERE idUtilisateur = :id" );
-            $requete->execute(array(':n'=> $nom, ':p'=> $prenom, ':a'=> $age, ':id' => $id));
+            $requete = $this->bd->prepare("UPDATE utilisateur SET email = :e, nom = :n, prenom = :p, age = :a WHERE idUtilisateur = :id" );
+            $requete->execute(array(':e'=> $email, ':n'=> $nom, ':p'=> $prenom, ':a'=> $age, ':id' => $id));
         
             
         } catch (PDOException $e) {
@@ -160,13 +163,14 @@ public function get_update_requete()
     
     {
         try {
+            $email = $_POST["email"];
             $nom = $_POST["nom"];
             $prenom = $_POST["prenom"];
             $age = $_POST["age"];
             $statut = $_POST["Statut"];
             $id = $_POST["id"];
-            $requete = $this->bd->prepare("UPDATE utilisateur SET nom = :n, prenom = :p, age = :a, Statut = :s WHERE idUtilisateur = :id" );
-            $requete->execute(array(':n'=> $nom, ':p'=> $prenom, ':a'=> $age, ':s' => $statut,':id' => $id));
+            $requete = $this->bd->prepare("UPDATE utilisateur SET email = :e, nom = :n, prenom = :p, age = :a, Statut = :s WHERE idUtilisateur = :id" );
+            $requete->execute(array(':e' => $email, ':n'=> $nom, ':p'=> $prenom, ':a'=> $age, ':s' => $statut,':id' => $id));
         
             
         } catch (PDOException $e) {
@@ -194,9 +198,9 @@ public function get_utilisateur_ajout()
     {
         try {
             
-            $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, nom, prenom, age,
-                                                                MdP, Statut) VALUES (NULL, :n, :p, :a, :mdp, :s)");
-            $requete->execute(array(':n'=> $_POST["nom"], ':p'=> $_POST["prenom"], 
+            $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, email, nom, prenom, age,
+                                                                MdP, Statut) VALUES (NULL, :e, :n, :p, :a, :mdp, :s)");
+            $requete->execute(array(':e'=> $_POST["email"],':n'=> $_POST["nom"], ':p'=> $_POST["prenom"], 
                                     ':a'=> $_POST["age"], ':mdp'=> md5($_POST["MdP"]), ':s'=> $_POST["statut"]));
         
             

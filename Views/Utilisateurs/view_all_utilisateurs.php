@@ -14,6 +14,7 @@ function confirmation() {
 <table id='table' class="table table-striped ">
 
 <thead>
+    <th>Email</th>
     <th>Nom</th>
     <th>Prenom</th>
     <th>Age</th>
@@ -23,6 +24,7 @@ function confirmation() {
 <?php  foreach($utilisateurs as $u): ?>
 <tr>
     <td style="display:none;"><?=$u->idUtilisateur?></td>
+    <td><?=$u->email?></td>
     <td ><?=$u->nom?></td>
     <td ><?=$u->prenom?></td>
     <td><?=$u->age?></td>

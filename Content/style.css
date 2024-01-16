@@ -1,0 +1,18 @@
+body {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode {
+    background-color: rgb(54, 54, 54) !important;
+    color: white ;
+
+}
+
+.dark-mode a {
+    color : white !important ;
+}
+
+.dark-mode #admin {
+    color : rgb(114, 104, 255) !important;
+}

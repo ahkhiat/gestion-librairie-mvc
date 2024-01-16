@@ -1,15 +1,14 @@
-<!-- <script>location.reload();</script> -->
 
 <?php
 
 
 $_SESSION["nom"] = $login[0]->nom;
+$_SESSION["email"] = $login[0]->email;
 $_SESSION["prenom"] = $login[0]->prenom;
 $_SESSION["id"] = $login[0]->idUtilisateur;
 $_SESSION["statut"] = $login[0]->Statut;
 $_SESSION["age"] = $login[0]->age;
 
-// var_dump($login);
 
 ?>
 

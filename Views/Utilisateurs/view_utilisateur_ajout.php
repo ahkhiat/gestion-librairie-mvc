@@ -4,6 +4,10 @@
 <form class= "mt-5" action="?controller=utilisateurs&action=utilisateur_ajout_requete" method="POST">
 
 
+<div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="text" name="email" class="form-control" id="email" aria-describedby="email">
+  </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Nom</label>
     <input type="text" name="nom" class="form-control" id="nom" aria-describedby="nom">

@@ -4,7 +4,10 @@
 <form class= "mt-5" action="?controller=home&action=update_utilisateur_requete" method="POST">
 
 
-
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="text" name="email" class="form-control" id="email" aria-describedby="email" value="<?php echo $_SESSION["email"] ?>">
+  </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Nom</label>
     <input type="text" name="nom" class="form-control" id="nom" aria-describedby="nom" value="<?php echo $_SESSION["nom"] ?>">
