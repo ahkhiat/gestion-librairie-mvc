@@ -11,7 +11,11 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Titre</label>
-    <input type="text" name="Titre_livre" class="form-control" id="Titre_livre" aria-describedby="Titre_livre">
+    <select name="Titre_Livre" id="Titre_Livre" class="form-control">
+
+
+    </select>
+    <!-- <input type="text" name="Titre_livre" class="form-control" id="Titre_livre" aria-describedby="Titre_livre"> -->
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Theme</label>
