@@ -11,7 +11,7 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Titre</label>
-    <select name="Titre_Livre" id="Titre_Livre" class="form-control">
+    <select name="Titre_livre" id="Titre_livre" class="form-control">
 
 
     </select>

@@ -54,7 +54,7 @@
                 <a href="?controller=fournisseurs&action=fournisseur_update&id='. $f->Id_fournisseur .'">
                     <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
                 <a href="?controller=fournisseurs&action=fournisseur_delete&id='. $f->Id_fournisseur .'">
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-pencil-fill"></i></button></a>
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a>
             </div>
         </td>';} 
        ?>  

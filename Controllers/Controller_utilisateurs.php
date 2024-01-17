@@ -66,6 +66,20 @@ class Controller_utilisateurs extends Controller
         $data=['utilisateurs'=>$m->get_all_utilisateurs()];
         $this->render("all_utilisateurs",$data);
     }
+    public function action_utilisateur_fiche()
+    {
+        // $m=Model::get_model();
+        // $data=['utilisateur'=>$m->get_utilisateur_fiche()];
+        $this->render("utilisateur_fiche");
+
+    }
+    public function action_utilisateur_fiche_admin()
+    {
+        $m=Model::get_model();
+        $data=['utilisateur'=>$m->get_utilisateur_fiche_admin()];
+        $this->render("utilisateur_fiche_admin",$data);
+
+    }
 
 }
 

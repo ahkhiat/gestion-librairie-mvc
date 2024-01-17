@@ -226,6 +226,33 @@ public function get_utilisateur_delete()
     }
     echo "}";
 }
+public function get_utilisateur_fiche()
+{
+    try {
+        $id = $_GET["id"];
+
+        $requete = $this->bd->prepare('SELECT * FROM utilisateur WHERE idUtilisateur = :id');
+        $requete->execute(array(':id'=> $id));
+        
+    } catch (PDOException $e) {
+        die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+    }
+    return $requete->fetchAll(PDO::FETCH_OBJ);
+}
+
+public function get_utilisateur_fiche_admin()
+{
+    try {
+        $id = $_GET["id"];
+
+        $requete = $this->bd->prepare('SELECT * FROM utilisateur WHERE idUtilisateur = :id');
+        $requete->execute(array(':id'=> $id));
+        
+    } catch (PDOException $e) {
+        die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+    }
+    return $requete->fetchAll(PDO::FETCH_OBJ);
+}
 // ----------------------------------PARTIE LIVRE--------------------------------------------//
     public function get_all_livres()
     {

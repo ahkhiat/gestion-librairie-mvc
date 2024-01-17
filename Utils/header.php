@@ -1,12 +1,6 @@
 <!-- header.php -->
 <?php
 session_start();
-
-// if (isset($login->nom) && $login->prenom) {
-// $nom = $login->nom;
-// $prenom = $login->prenom;
-// }
-
 ?>
 
 <!DOCTYPE html>
@@ -25,9 +19,7 @@ session_start();
 </head>
 <body>
 <div class="container pt-5">
-<nav class="navbar navbar-light navbar-expand-lg fixed-top" >
-
-<!-- style="background-color: #e3f2fd;" -->
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-light" >
 
   <div class="container-fluid">
 
@@ -42,50 +34,14 @@ session_start();
         </li>
 
         <?php
-        if(isset ($_SESSION["nom"])) // Affiche si la session existe
-        {echo '
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Livres
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="?controller=livres&action=all_livres">Tous les livres</a></li>
-            <li><a class="dropdown-item" href="?controller=livres&action=livre_titre">Chercher par nom</a></li>
-            <li><a class="dropdown-item" href="?controller=livres&action=livre_auteur">Chercher par auteur</a></li>
-            <li><a class="dropdown-item" href="?controller=livres&action=livre_editeur">Chercher par éditeur</a></li>
+            if(isset ($_SESSION["nom"])) // Display if user is LOGGED
+              {
+                include("headerUtilisateur.php");
+              }
+        ?>
 
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Fournisseurs
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="?controller=fournisseurs&action=all_fournisseurs">Tous les fournisseurs</a></li>
-            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_nom">Chercher par nom</a></li>
-            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_ville">Chercher par ville</a></li>
-            <li><a class="dropdown-item" href="?controller=fournisseurs&action=fournisseur_pays">Chercher par pays</a></li>
-
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Commandes
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="?controller=commandes&action=all_commandes">Toutes les commandes</a></li>
-            <li><a class="dropdown-item" href="?controller=commandes&action=commande_editeur">Chercher par éditeur</a></li>
-            <li><a class="dropdown-item" href="?controller=commandes&action=commande_fournisseur">Chercher par fournisseur</a></li>
-            <li><a class="dropdown-item" href="?controller=commandes&action=commande_date">Chercher par date</a></li>
-
-          </ul>
-        </li>
-        
-        
-
-         ';} ?>
-         <?php 
-            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin")  // affiche si l'utilisateur est un admin
+        <?php   // --------------- Display User menu if user is ADMIN ------------------
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin")  
             {echo '<li class="nav-item">
                   <a class="nav-link" href="?controller=utilisateurs&action=all_utilisateurs">Utilisateurs</a>
                   </li>';} 
@@ -93,25 +49,25 @@ session_start();
 
 
       </ul>
-      <button class="btn btn-rounded" id="theme" onclick="myFunction()"><i class="bi bi-moon-fill"></i>
-</button>
+      <!-- ---------------------- Light Dark mode function, call a js script -------------->
+      <button class="btn btn-rounded" id="theme" onclick="myFunction()"><i class="bi bi-moon-fill"></i></button>
 
        
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ms-auto">
 
         <li class="nav-item">
-        <?php 
-            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin")  // affiche si l'utilisateur est un admin
+        <?php    // ------------ Display if user is ADMIN -------------
+            if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin")  
             {echo "<strong><a class='nav-link text-danger' id='admin'>Mode Administrateur</a></strong>";} 
         ?>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="?controller=utilisateurs&action=update_utilisateur"><?php if(isset ($_SESSION["nom"])) {echo "<strong>" . substr($_SESSION["prenom"], 0, 1) . substr($_SESSION["nom"], 0, 1) . "</strong>";}?> </a>
+        <li class="nav-item"> <!--   Display name's initials & click to update     -->
+            <a class="nav-link" href="?controller=utilisateurs&action=utilisateur_fiche"><?php if(isset ($_SESSION["nom"])) {echo "<strong>" . substr($_SESSION["prenom"], 0, 1) . substr($_SESSION["nom"], 0, 1) . "</strong>";}?> </a>
         </li> 
         <li>
-          <?php 
+          <?php  // ---------- Login & logout link ----------
               if(isset ($_SESSION["nom"]))
               {
                 echo "<a class='nav-link' href='?controller=home&action=deconnexion'>Deconnexion</a>";
