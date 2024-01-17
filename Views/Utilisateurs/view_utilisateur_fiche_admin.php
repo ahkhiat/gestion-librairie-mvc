@@ -6,6 +6,9 @@
 </div>
 
   <div class="container py-5">
+    <div class="d-flex justify-content-start mb-2">
+      <a href="?controller=utilisateurs&action=all_utilisateurs"><button type="button" class="btn btn-secondary">Retour liste utilisateurs</button></a>
+    </div>
     
     <div class="row">
       <div class="col-lg-4">
@@ -108,6 +111,11 @@
             </div>
 
           </div>
+        </div>
+
+        <div class="d-flex justify-content-center mb-2">
+              <a href="?controller=utilisateurs&action=utilisateur_fiche_admin_update&id=<?=$utilisateur[0]->idUtilisateur?>"><button type="button" class="btn btn-primary">Modifier</button></a>
+              <a href="?controller=utilisateurs&action=delete_utilisateur&id=<?=$utilisateur[0]->idUtilisateur?>"><button type="button" class="btn btn-outline-danger ms-1" onclick="return confirmation()">Supprimer</button></a>
         </div>
         <!--
         <div class="row">

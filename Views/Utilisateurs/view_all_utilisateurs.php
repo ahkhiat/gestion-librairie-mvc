@@ -2,11 +2,7 @@
 
 <p> <?= isset($search)?'Recherche par '.$search:'' ?></p>
 
-<script type="text/javascript">
-function confirmation() {
-  return confirm("Supprimer cet utilisateur ?");
-}
-</script>
+
 <div class="w-75 mx-auto d-flex flex-column">
 <div class="align-self-end">
 <a href="?controller=utilisateurs&action=utilisateur_ajout"><button class="mt-3 btn btn-secondary">Ajouter un utilisateur</button></a>
@@ -34,7 +30,7 @@ function confirmation() {
         <td width="50">
             <div class="d-flex flex-row">
             
-                <a href="?controller=utilisateurs&action=update_utilisateur_admin&id=<?=$u->idUtilisateur?>">
+                <a href="?controller=utilisateurs&action=utilisateur_fiche_admin&id=<?=$u->idUtilisateur?>">
                     <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
                 <a href="?controller=utilisateurs&action=delete_utilisateur&id=<?=$u->idUtilisateur?>">
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a>

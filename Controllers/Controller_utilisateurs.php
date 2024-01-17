@@ -23,7 +23,7 @@ class Controller_utilisateurs extends Controller
     {
         // $m=Model::get_model();
         // $data=['utilisateurs'=>$m->get_utilisateur_ajout()];
-        $this->render("utilisateur_ajout");
+        $this->render("utilisateur_fiche_admin_ajout");
 
     }
     public function action_utilisateur_ajout_requete()
@@ -55,7 +55,7 @@ class Controller_utilisateurs extends Controller
     public function action_update_utilisateur_admin_requete()
     {
         $m=Model::get_model();
-        $data=['utilisateur'=>$m->get_update_admin_requete($_POST['nom'], $_POST['prenom'], $_POST["age"], $_POST["Statut"])];
+        $data=['utilisateur'=>$m->get_update_admin_requete($_POST['nom'], $_POST['prenom'], $_POST["Statut"])];
         $this->render("update_utilisateur_admin_done", $data);
     }
 
@@ -80,7 +80,13 @@ class Controller_utilisateurs extends Controller
         $this->render("utilisateur_fiche_admin",$data);
 
     }
+    public function action_utilisateur_fiche_admin_update()
+    {
+        $m=Model::get_model();
+        $data=['utilisateur'=>$m->get_utilisateur_fiche_admin()];
+        $this->render("utilisateur_fiche_admin_update",$data);
 
+    }
 }
 
 ?>

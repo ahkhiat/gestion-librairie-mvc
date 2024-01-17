@@ -1,5 +1,9 @@
 console.log("script chargé sûr");
 
+//-----------------Confirmation avant suppression------------------------
+function confirmation() {
+  return confirm("Etes-vous certain de supprimer cet utilisateur ? Cette action est irréversible !");
+}
 
 // ------------------Light Dark Mode------------------------------------
 function myFunction() {
@@ -50,6 +54,7 @@ document.querySelector("#ISBN").addEventListener("input", (texte) => {
         dernierElementSansTirets = dernierElement.replace(/-/g, "");
         console.log(dernierElementSansTirets);
         urlRecherche = urlApi + dernierElementSansTirets;
+        removeOptions(TitreLivre);
         datasFetch();
 
         setTimeout(() => {
@@ -85,14 +90,21 @@ function LivreParDefaut() {
 function LivreChoisi() {
 
   TitreLivre.addEventListener('change', () => {
-    document.querySelector("#Nbr_pages_livre").value = result.items[TitreLivre.selectedIndex].volumeInfo.pageCount;
+    document.querySelector("#Nbr_pages_livre").value = result.docs[TitreLivre.selectedIndex].number_of_pages_median;
     // document.querySelector("#Theme_livre").value = result.items[TitreLivre.selectedIndex-1].volumeInfo;
     // document.querySelector("#Format_livre").value = result.items[TitreLivre.selectedIndex-1].volumeInfo;
-    document.querySelector("#Nom_auteur").value = result.items[TitreLivre.selectedIndex].volumeInfo.authors ;
+    document.querySelector("#Nom_auteur").value = result.docs[TitreLivre.selectedIndex].author_name ;
     // document.querySelector("#Prenom_auteur").value = ;
-    document.querySelector("#Editeur").value = result.items[TitreLivre.selectedIndex].volumeInfo.publisher;
-    document.querySelector("#Annee_edition").value = result.items[TitreLivre.selectedIndex].volumeInfo.publishedDate ;
+    document.querySelector("#Editeur").value = result.docs[TitreLivre.selectedIndex].volumeInfo.publisher;
+    document.querySelector("#Annee_edition").value = result.docs[TitreLivre.selectedIndex].volumeInfo.publishedDate ;
     // document.querySelector("#Prix_vente").value = result.items[TitreLivre.selectedIndex].volumeInfo;
-    document.querySelector("#Langue_livre").value = result.items[TitreLivre.selectedIndex].volumeInfo.language;
+    document.querySelector("#Langue_livre").value = result.docs[TitreLivre.selectedIndex].volumeInfo.language;
   })
+}
+
+function removeOptions(selectMenu) {
+  while (selectMenu.options.length > 0) {
+    selectMenu.remove(0);
+  }
+
 }

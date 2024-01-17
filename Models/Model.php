@@ -166,11 +166,21 @@ public function get_update_requete()
             $email = $_POST["email"];
             $nom = $_POST["nom"];
             $prenom = $_POST["prenom"];
-            $age = $_POST["age"];
+            // $age = $_POST["age"];
             $statut = $_POST["Statut"];
             $id = $_POST["id"];
-            $requete = $this->bd->prepare("UPDATE utilisateur SET email = :e, nom = :n, prenom = :p, age = :a, Statut = :s WHERE idUtilisateur = :id" );
-            $requete->execute(array(':e' => $email, ':n'=> $nom, ':p'=> $prenom, ':a'=> $age, ':s' => $statut,':id' => $id));
+            $tel = $_POST["tel"];
+            $adresse = $_POST["adresse"];
+            $code_postal = $_POST["code_postal"];
+            $localite = $_POST["localite"];
+            $github = $_POST["github"];
+            $insta = $_POST["insta"];
+            $twitter = $_POST["twitter"];
+            $requete = $this->bd->prepare("UPDATE utilisateur SET email = :e, nom = :n, prenom = :p, Statut = :s, tel = :t,
+                                            adresse = :ad, code_postal = :code, localite = :loc, github = :git, insta = :inst, twitter = :tw WHERE idUtilisateur = :id" );
+            $requete->execute(array(':e' => $email, ':n'=> $nom, ':p'=> $prenom, ':s' => $statut,':id' => $id,
+                                    ':t' => $tel, ':ad' => $adresse, ':code' => $code_postal, ':loc' => $localite,
+                                    ':git' => $github, ':inst' => $insta, ':tw' => $twitter  ));
         
             
         } catch (PDOException $e) {
@@ -198,10 +208,13 @@ public function get_utilisateur_ajout()
     {
         try {
             
-            $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, email, nom, prenom, age,
-                                                                MdP, Statut) VALUES (NULL, :e, :n, :p, :a, :mdp, :s)");
+            $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, email, nom, prenom,
+                                                                MdP, Statut, tel, adresse, code_postal, localite, github, insta, twitter) VALUES (NULL, :e, :n, :p, :mdp, :s, 
+                                                                :tel, :ad, :code, :loc, :git, :insta, :tw)");
             $requete->execute(array(':e'=> $_POST["email"],':n'=> $_POST["nom"], ':p'=> $_POST["prenom"], 
-                                    ':a'=> $_POST["age"], ':mdp'=> md5($_POST["MdP"]), ':s'=> $_POST["statut"]));
+                                     ':mdp'=> md5($_POST["MdP"]), ':s'=> $_POST["Statut"],
+                                    ':tel'=> $_POST["tel"], ':ad'=> $_POST["adresse"], ':code'=> $_POST["code_postal"],
+                                    ':loc'=> $_POST["localite"], ':git'=> $_POST["github"], ':insta'=> $_POST["insta"],':tw'=> $_POST["twitter"]));
         
             
         } catch (PDOException $e) {
