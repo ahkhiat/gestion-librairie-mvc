@@ -42,7 +42,7 @@ class Controller_home extends Controller
     public function action_connexion_requete()
     {
         $m=Model::get_model();
-        $data=['login'=>$m->get_connexion($_POST['email'], $_POST['MdP'])];
+        $data=['login'=>$m->get_connexion()];
         $this->render("login", $data);
         
     }

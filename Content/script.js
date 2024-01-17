@@ -32,6 +32,7 @@ function checkEmail(email) {
   }
 }
 
+//---------------Fetch API Livres ISBN---------------------------------
 let result;
 let urlRecherche;
 let champRecherche = [];
@@ -45,29 +46,29 @@ const datasFetch = async () => {
 }
 
 document.querySelector("#ISBN").addEventListener("input", (texte) => {
-    let champ = texte.target.value;
+    let champ = texte.target.value; // -----capte ce qu'on saisie dans l'input
     champRecherche.push(champ);
     
 
-    if (champ.length > 8) {
+    if (champ.length > 8) { // -----------ne fetch pas si moins de 8 caractères
         dernierElement = champRecherche[champRecherche.length - 1];
+        // ---------------- Enlève les tirets dans un ISBN-----------------
         dernierElementSansTirets = dernierElement.replace(/-/g, "");
         console.log(dernierElementSansTirets);
         urlRecherche = urlApi + dernierElementSansTirets;
-        removeOptions(TitreLivre);
-        datasFetch();
+        removeOptions(TitreLivre); //----- Vider le Select à chaque nouvelle saisie
+        datasFetch(); // ----------------- Appel du fetch -------------------------
 
+        //--------------------décalage de 3s pour récuperer la réponse de l'API---- 
         setTimeout(() => {
-          console.log("result2", result.docs)
-
               for (let i=0; i < result.docs.length ; i++){
                   let option = document.createElement("option");
                   option.value = result.docs[i].title;
                   option.text = result.docs[i].title;
                   TitreLivre.appendChild(option);
 
-              LivreParDefaut();
-              LivreChoisi();
+              LivreParDefaut(); //----- 1er résultat
+              LivreChoisi(); // ----- Si plusieurs resultats, alors cela fait un Select menu
               }
           }, "3000");
     }
@@ -101,7 +102,7 @@ function LivreChoisi() {
     document.querySelector("#Langue_livre").value = result.docs[TitreLivre.selectedIndex].volumeInfo.language;
   })
 }
-
+// --------------- Vide le menu Select à chaque nouvelle saisie---------------
 function removeOptions(selectMenu) {
   while (selectMenu.options.length > 0) {
     selectMenu.remove(0);

@@ -11,10 +11,6 @@
             <h5 class="my-3"><?php echo $_SESSION["prenom"] . "&nbsp" . $_SESSION["nom"]; ?></h5>
             <p class="text-muted mb-1"><?php echo $_SESSION["statut"] ?></p>
             <p class="text-muted mb-4"><?php echo $_SESSION["localite"] ?></p>
-            <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Follow</button>
-              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-            </div>
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
@@ -77,6 +73,17 @@
 
             <div class="row">
               <div class="col-sm-3">
+                <p class="mb-0">Date de naissance</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><?php echo $_SESSION["date_naissance"] ?></p>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
                 <p class="mb-0">Téléphone</p>
               </div>
               <div class="col-sm-9">
@@ -86,7 +93,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Address</p>
+                <p class="mb-0">Addresse</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0"><?php echo $_SESSION["adresse"] . "&nbsp" .  $_SESSION["code_postal"] . "&nbsp".  $_SESSION["localite"]; ?></p>
@@ -94,6 +101,12 @@
             </div>
           </div>
         </div>
+
+        <div class="d-flex justify-content-center mb-2">
+              <a href="?controller=utilisateurs&action=utilisateur_fiche_update"><button type="button" class="btn btn-primary">Modifier</button></a>
+              <a href="?controller=utilisateurs&action=delete_utilisateur"><button type="button" class="btn btn-outline-danger ms-1" onclick="return confirmation()">Supprimer</button></a>
+        </div>
+
         <!--
         <div class="row">
           <div class="col-md-6">

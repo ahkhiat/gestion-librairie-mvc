@@ -85,6 +85,17 @@
 
             <div class="row">
               <div class="col-sm-3">
+                <p class="mb-0">Date de naissance</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><?php echo $utilisateur[0]->date_naissance ; ?></p>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
                 <p class="mb-0">Téléphone</p>
               </div>
               <div class="col-sm-9">
@@ -94,7 +105,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Address</p>
+                <p class="mb-0">Adresse</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0"><?php echo $utilisateur[0]->adresse . "&nbsp" .  $utilisateur[0]->code_postal . "&nbsp".  $utilisateur[0]->localite; ?></p>

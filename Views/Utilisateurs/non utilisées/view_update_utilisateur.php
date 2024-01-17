@@ -6,19 +6,19 @@
 
   <div class="form-group">
     <label for="exampleInputEmail1">Email</label>
-    <input type="text" name="email" class="form-control" id="email" aria-describedby="email" value="<?php echo $_SESSION["email"] ?>">
+    <input type="text" name="email" class="form-control" id="email"  value="<?php echo $_SESSION["email"] ?>">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Nom</label>
-    <input type="text" name="nom" class="form-control" id="nom" aria-describedby="nom" value="<?php echo $_SESSION["nom"] ?>">
+    <input type="text" name="nom" class="form-control" id="nom"  value="<?php echo $_SESSION["nom"] ?>">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Prenom</label>
-    <input type="text" name="prenom" class="form-control" id="prenom" aria-describedby="prenom" value="<?php echo $_SESSION["prenom"] ?>">
+    <input type="text" name="prenom" class="form-control" id="prenom"  value="<?php echo $_SESSION["prenom"] ?>">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Age</label>
-    <input type="text" name="age" class="form-control" id="age" aria-describedby="age" value="<?php echo $_SESSION["age"] ?>">
+    <label for="exampleInputEmail1">Date de naissance</label>
+    <input type="date" name="date_naissance" class="form-control" id="date_naissance"  value="<?php echo $_SESSION["date_naissance"] ?>">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Statut</label>

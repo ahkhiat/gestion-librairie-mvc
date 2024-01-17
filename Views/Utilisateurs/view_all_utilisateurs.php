@@ -13,7 +13,7 @@
     <th>Email</th>
     <th>Nom</th>
     <th>Prenom</th>
-    <th>Age</th>
+    <th>Date de naissance</th>
     <th>Statut</th>
     <th>Action</th>
 </thead>
@@ -24,7 +24,7 @@
         <td><?=$u->email?></td>
         <td ><?=$u->nom?></td>
         <td ><?=$u->prenom?></td>
-        <td><?=$u->age?></td>
+        <td><?=$u->date_naissance?></td>
         <td><?=$u->Statut?></td>
     
         <td width="50">

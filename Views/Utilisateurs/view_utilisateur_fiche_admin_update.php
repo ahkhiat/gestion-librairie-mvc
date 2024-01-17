@@ -11,7 +11,7 @@
     <a href="?controller=utilisateurs&action=all_utilisateurs"><button type="button" class="btn btn-secondary">Retour liste utilisateurs</button></a>
     </div>
 
-    <form class= "" action="?controller=utilisateurs&action=update_utilisateur_admin_requete" method="POST">
+    <form class= "" action="?controller=utilisateurs&action=utilisateur_fiche_admin_update_requete" method="POST">
 
     <div class="row">
       <div class="col-lg-4">
@@ -86,6 +86,17 @@
               <input type="text" name="email" class="form-control" id="email" aria-describedby="email" value="<?php echo $utilisateur[0]->email ?>">
               </div>
             </div>
+
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Date de naissance</p>
+              </div>
+              <div class="col-sm-9">
+              <input type="date" name="date_naissance" class="form-control" id="date_naissance" value="<?php echo $utilisateur[0]->date_naissance ?>">
+              </div>
+            </div>
             
             <hr>
 
@@ -100,7 +111,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Address</p>
+                <p class="mb-0">Adresse</p>
               </div>
               <div class="col-sm-9">
               <input type="text" name="adresse" class="form-control" id="adresse" aria-describedby="adresse" value="<?php echo $utilisateur[0]->adresse ?>">

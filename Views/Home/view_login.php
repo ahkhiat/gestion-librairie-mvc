@@ -5,6 +5,7 @@
 $_SESSION["nom"] = $login[0]->nom;
 $_SESSION["email"] = $login[0]->email;
 $_SESSION["prenom"] = $login[0]->prenom;
+$_SESSION["date_naissance"] = $login[0]->date_naissance;
 $_SESSION["id"] = $login[0]->idUtilisateur;
 $_SESSION["statut"] = $login[0]->Statut;
 $_SESSION["adresse"] = $login[0]->adresse;

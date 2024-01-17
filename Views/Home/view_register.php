@@ -5,19 +5,19 @@
 <form method="POST" action="?controller=home&action=register_requete">
 <div class="form-group">
     <label for="exampleInputEmail1">Email*</label>
-    <input type="text" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+    <input type="text" class="form-control" id="email" aria-describedby="email" name="email" required>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Nom*</label>
-    <input type="text" class="form-control" id="nom" aria-describedby="emailHelp" name="nom" required>
+    <input type="text" class="form-control" id="nom" name="nom" required>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Prénom*</label>
-    <input type="text" class="form-control" id="prenom" aria-describedby="emailHelp" name="prenom" required>
+    <input type="text" class="form-control" id="prenom" name="prenom" required>
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Age*</label>
-    <input type="text" class="form-control" id="age" aria-describedby="emailHelp" name="age" required>
+    <label for="exampleInputEmail1">Date de naissance*</label>
+    <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
   </div>
   
   <div class="form-group">

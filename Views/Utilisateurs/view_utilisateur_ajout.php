@@ -6,27 +6,27 @@
 
 <div class="form-group">
     <label for="exampleInputEmail1">Email</label>
-    <input type="text" name="email" class="form-control" id="email" aria-describedby="email">
+    <input type="text" name="email" class="form-control" id="email" >
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Nom</label>
-    <input type="text" name="nom" class="form-control" id="nom" aria-describedby="nom">
+    <input type="text" name="nom" class="form-control" id="nom">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Prenom</label>
-    <input type="text" name="prenom" class="form-control" id="prenom" aria-describedby="prenom" >
+    <input type="text" name="prenom" class="form-control" id="prenom">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Age</label>
-    <input type="text" name="age" class="form-control" id="age" aria-describedby="age" >
+    <label for="exampleInputEmail1">Date de naissance</label>
+    <input type="date" name="date_naissance" class="form-control" id="age">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Date</label>
-    <input type="date" name="date" class="form-control" id="date" aria-describedby="date" >
+    <input type="date" name="date" class="form-control" id="date">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Mot de passe</label>
-    <input type="password" name="MdP" class="form-control" id="MdP" aria-describedby="MdP" >
+    <input type="password" name="MdP" class="form-control" id="MdP">
   </div>
 
   

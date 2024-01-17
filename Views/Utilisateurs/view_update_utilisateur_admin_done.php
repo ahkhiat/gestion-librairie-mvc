@@ -2,7 +2,7 @@
 <h4>L'utilisateur a été modifié ! </h4>
 </div>
 
-<!-- <script>setTimeout(() => {
+<script>setTimeout(() => {
 window.location.href = '?controller=utilisateurs&action=all_utilisateurs';
 
-}, 3000);</script> -->
+}, 3000);</script>

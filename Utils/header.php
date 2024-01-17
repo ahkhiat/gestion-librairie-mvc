@@ -49,7 +49,7 @@ session_start();
 
 
       </ul>
-      <!-- ---------------------- Light Dark mode function, call a js script -------------->
+      <!-- ---------------------- Light Dark mode function, call a js script NOT WORK-------------->
       <button class="btn btn-rounded" id="theme" onclick="myFunction()"><i class="bi bi-moon-fill"></i></button>
 
        
@@ -57,17 +57,17 @@ session_start();
       <ul class="navbar-nav ms-auto">
 
         <li class="nav-item">
-        <?php    // ------------ Display if user is ADMIN -------------
+        <?php    // ------------ Display if user is ADMIN -------------------
             if(isset($_SESSION["statut"]) && $_SESSION["statut"]=="Admin")  
             {echo "<strong><a class='nav-link text-danger' id='admin'>Mode Administrateur</a></strong>";} 
         ?>
         </li>
 
-        <li class="nav-item"> <!--   Display name's initials & click to update     -->
+        <li class="nav-item"> <!--   Display name's initials & click to update  ----->
             <a class="nav-link" href="?controller=utilisateurs&action=utilisateur_fiche"><?php if(isset ($_SESSION["nom"])) {echo "<strong>" . substr($_SESSION["prenom"], 0, 1) . substr($_SESSION["nom"], 0, 1) . "</strong>";}?> </a>
         </li> 
         <li>
-          <?php  // ---------- Login & logout link ----------
+          <?php  // -------------- Login & logout link ------------------
               if(isset ($_SESSION["nom"]))
               {
                 echo "<a class='nav-link' href='?controller=home&action=deconnexion'>Deconnexion</a>";

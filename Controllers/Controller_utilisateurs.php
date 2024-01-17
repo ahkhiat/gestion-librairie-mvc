@@ -34,28 +34,18 @@ class Controller_utilisateurs extends Controller
 
     }
 
-    public function action_update_utilisateur()
+    public function action_utilisateur_fiche_update_requete()
     {
         $m=Model::get_model();
-        $data=['login'=>$m->get_update()];
-        $this->render('update_utilisateur');
-    }
-    public function action_update_utilisateur_requete()
-    {
-        $m=Model::get_model();
-        $data=['login'=>$m->get_update_requete($_POST['nom'], $_POST['prenom'], $_POST["age"])];
+        $data=['login'=>$m->get_update_requete()];
+
         $this->render("update_done", $data);
     }
-    public function action_update_utilisateur_admin()
+   
+    public function action_utilisateur_fiche_admin_update_requete()
     {
         $m=Model::get_model();
-        $data=['utilisateur'=>$m->get_update_admin()];
-        $this->render('update_utilisateur_admin', $data);
-    }
-    public function action_update_utilisateur_admin_requete()
-    {
-        $m=Model::get_model();
-        $data=['utilisateur'=>$m->get_update_admin_requete($_POST['nom'], $_POST['prenom'], $_POST["Statut"])];
+        $data=['utilisateur'=>$m->get_update_admin_requete()];
         $this->render("update_utilisateur_admin_done", $data);
     }
 
@@ -71,6 +61,13 @@ class Controller_utilisateurs extends Controller
         // $m=Model::get_model();
         // $data=['utilisateur'=>$m->get_utilisateur_fiche()];
         $this->render("utilisateur_fiche");
+
+    }
+    public function action_utilisateur_fiche_update()
+    {
+        // $m=Model::get_model();
+        // $data=['utilisateur'=>$m->get_utilisateur_fiche()];
+        $this->render("utilisateur_fiche_update");
 
     }
     public function action_utilisateur_fiche_admin()
