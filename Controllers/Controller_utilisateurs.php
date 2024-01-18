@@ -58,16 +58,16 @@ class Controller_utilisateurs extends Controller
     }
     public function action_utilisateur_fiche()
     {
-        // $m=Model::get_model();
-        // $data=['utilisateur'=>$m->get_utilisateur_fiche()];
-        $this->render("utilisateur_fiche");
+        $m=Model::get_model();
+        $data=['utilisateur'=>$m->get_utilisateur_fiche()];
+        $this->render("utilisateur_fiche", $data);
 
     }
     public function action_utilisateur_fiche_update()
     {
-        // $m=Model::get_model();
-        // $data=['utilisateur'=>$m->get_utilisateur_fiche()];
-        $this->render("utilisateur_fiche_update");
+        $m=Model::get_model();
+        $data=['utilisateur'=>$m->get_utilisateur_fiche()];
+        $this->render("utilisateur_fiche_update", $data);
 
     }
     public function action_utilisateur_fiche_admin()

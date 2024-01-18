@@ -50,11 +50,14 @@
                 
         <td>
             <div class="d-flex flex-row">
-            
-                <a href="?controller=fournisseurs&action=fournisseur_update&id='. $f->Id_fournisseur .'">
-                    <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
-                <a href="?controller=fournisseurs&action=fournisseur_delete&id='. $f->Id_fournisseur .'">
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a>
+                <form action="?controller=fournisseurs&action=fournisseur_update" method="POST">
+                    <input type="hidden" name="id" class="form-control" id="hide" value="' .   $f->Id_fournisseur  .'">
+                    <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button>
+                </form>
+                <form action="?controller=fournisseurs&action=fournisseur_delete" method="POST">
+                    <input type="hidden" name="id" class="form-control" id="hide" value="' .   $f->Id_fournisseur  .'">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button>
+                </form>
             </div>
         </td>';} 
        ?>  

@@ -143,6 +143,7 @@
               <div class="col-sm-9">
                     <select name="Statut" id="Statut" class="form-control">
                         <option value="Admin" <?php if($utilisateur[0]->Statut=="Admin") echo 'selected'; ?>>Admin</option>
+                        <option value="Personnel" <?php if($utilisateur[0]->Statut=="Personnel") echo 'selected'; ?>>Personnel</option>
                         <option value="Utilisateur" <?php if($utilisateur[0]->Statut=="Utilisateur") echo 'selected'; ?>>Utilisateur</option>
                     </select>
               </div> 

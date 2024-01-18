@@ -1,3 +1,6 @@
+<?php 
+// var_dump($utilisateur);
+?>
 
 <section style="background-color: #eee;">
   <div class="container py-5">
@@ -8,9 +11,9 @@
           <div class="card-body text-center">
             <img src="./Content/img/profile.png" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3"><?php echo $_SESSION["prenom"] . "&nbsp" . $_SESSION["nom"]; ?></h5>
-            <p class="text-muted mb-1"><?php echo $_SESSION["statut"] ?></p>
-            <p class="text-muted mb-4"><?php echo $_SESSION["localite"] ?></p>
+            <h5 class="my-3"><?php echo $utilisateur[0]->prenom . "&nbsp" . $utilisateur[0]->nom; ?></h5>
+            <p class="text-muted mb-1"><?php echo $utilisateur[0]->Statut ?></p>
+            <p class="text-muted mb-4"><?php echo $utilisateur[0]->localite ?></p>
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
@@ -19,15 +22,15 @@
               
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="bi bi-github" style="color: #333333;"></i>
-                <p class="mb-0"><a href="http://www.github.com/<?php echo $_SESSION["github"] ?>" target="_blank" style="text-decoration : none; color : inherit"><?php echo $_SESSION["github"] ?></a></p>
+                <p class="mb-0"><a href="http://www.github.com/<?php echo $utilisateur[0]->github ?>" target="_blank" style="text-decoration : none; color : inherit"><?php echo $_SESSION["github"] ?></a></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="bi bi-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0"><a href="http://www.instagram.com/<?php echo $_SESSION["insta"] ?>" target="_blank" style="text-decoration : none; color : inherit"><?php echo $_SESSION["insta"] ?></a></p>
+                <p class="mb-0"><a href="http://www.instagram.com/<?php echo $utilisateur[0]->insta ?>" target="_blank" style="text-decoration : none; color : inherit"><?php echo $_SESSION["insta"] ?></a></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="bi bi-twitter-x fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0"><a href="http://www.twitter.com/<?php echo $_SESSION["twitter"] ?>" target="_blank" style="text-decoration : none; color : inherit"><?php echo $_SESSION["twitter"] ?></a></p>
+                <p class="mb-0"><a href="http://www.twitter.com/<?php echo $utilisateur[0]->twitter ?>" target="_blank" style="text-decoration : none; color : inherit"><?php echo $_SESSION["twitter"] ?></a></p>
               </li>
               
             </ul>
@@ -43,7 +46,7 @@
                 <p class="mb-0">Nom</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><?php echo $_SESSION["nom"] ?></p>
+                <p class="text-muted mb-0"><?php echo $utilisateur[0]->nom ?></p>
               </div>
             </div>
 
@@ -54,7 +57,7 @@
                 <p class="mb-0">Prénom</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><?php echo $_SESSION["prenom"] ?></p>
+                <p class="text-muted mb-0"><?php echo $utilisateur[0]->prenom ?></p>
               </div>
             </div>
 
@@ -65,7 +68,7 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><?php echo $_SESSION["email"] ?></p>
+                <p class="text-muted mb-0"><?php echo $utilisateur[0]->email ?></p>
               </div>
             </div>
             
@@ -76,7 +79,7 @@
                 <p class="mb-0">Date de naissance</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><?php echo $_SESSION["date_naissance"] ?></p>
+                <p class="text-muted mb-0"><?php echo $utilisateur[0]->date_naissance ?></p>
               </div>
             </div>
 
@@ -87,7 +90,7 @@
                 <p class="mb-0">Téléphone</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><?php echo $_SESSION["tel"] ; ?></p>
+                <p class="text-muted mb-0"><?php echo $utilisateur[0]->tel ; ?></p>
               </div>
             </div>
             <hr>
@@ -96,7 +99,7 @@
                 <p class="mb-0">Addresse</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><?php echo $_SESSION["adresse"] . "&nbsp" .  $_SESSION["code_postal"] . "&nbsp".  $_SESSION["localite"]; ?></p>
+                <p class="text-muted mb-0"><?php echo $utilisateur[0]->adresse . "&nbsp" .  $utilisateur[0]->code_postal . "&nbsp".  $utilisateur[0]->localite; ?></p>
               </div>
             </div>
           </div>

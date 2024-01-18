@@ -18,9 +18,6 @@
     <th>Action</th>
 </thead>
 <?php  foreach($utilisateurs as $u): ?>
-    <!-- A FAIRE -->
-    <tr onclick="location.href = '?controller=utilisateurs&action=utilisateur_fiche_admin&id=<?=$u->idUtilisateur?>'"> 
-        <td style="display:none;"><?=$u->idUtilisateur?></td>
         <td><?=$u->email?></td>
         <td ><?=$u->nom?></td>
         <td ><?=$u->prenom?></td>
@@ -29,12 +26,16 @@
     
         <td width="50">
             <div class="d-flex flex-row">
-            
-                <a href="?controller=utilisateurs&action=utilisateur_fiche_admin&id=<?=$u->idUtilisateur?>">
-                    <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button></a>
-                <a href="?controller=utilisateurs&action=delete_utilisateur&id=<?=$u->idUtilisateur?>">
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button></a>
+                <form action="?controller=utilisateurs&action=utilisateur_fiche_admin" method="POST">
+                    <input type="hidden" name="id" class="form-control" id="hide" value="<?php echo $u->idUtilisateur ?>">
+                    <button type="submit" class="btn btn-primary btn-sm me-3"><i class="bi bi-pencil-fill"></i></button>
+                </form>
+                <form action="?controller=utilisateurs&action=delete_utilisateur" method="POST">
+                    <input type="hidden" name="id" class="form-control" id="hide" value="<?php echo $u->idUtilisateur ?>">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmation()"><i class="bi bi-trash-fill"></i></button>
+                </form>
             </div>
+            
         </td>
     
     </tr>

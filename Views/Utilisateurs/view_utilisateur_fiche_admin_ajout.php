@@ -163,8 +163,8 @@
               <div class="col-sm-9">
                     <select name="Statut" id="Statut" class="form-control">
                         <option value="Admin">Admin</option>
-                        <option value="Utilisateur">Personnel</option>
-                        <option value="Utilisateur">Utilisateur</option>
+                        <option value="Personnel">Personnel</option>
+                        <option value="Utilisateur" selected>Utilisateur</option>
                     </select>
               </div> 
                 

@@ -9,7 +9,9 @@ class Controller_home extends Controller
 
     public function action_home()
     {
-        $this->render('home');
+        $m=Model::get_model();
+        $data=['utilisateur'=>$m->get_utilisateur_fiche()];
+        $this->render('home', $data);
     }
 
     public function action_connexion()

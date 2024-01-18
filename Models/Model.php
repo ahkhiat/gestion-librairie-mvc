@@ -212,7 +212,7 @@ public function get_utilisateur_ajout()
 
 public function get_utilisateur_delete()
 {
-    $choixUtilisateur = $_GET["id"];
+    $choixUtilisateur = $_POST["id"];
     {
         try {
             $requete = $this->bd->prepare("DELETE FROM utilisateur WHERE idUtilisateur = :i ");
@@ -227,8 +227,10 @@ public function get_utilisateur_delete()
 }
 public function get_utilisateur_fiche()
 {
+    if(isset($_SESSION["id"]))
+    {
     try {
-        $id = $_GET["id"];
+        $id = $_SESSION["id"];
 
         $requete = $this->bd->prepare('SELECT * FROM utilisateur WHERE idUtilisateur = :id');
         $requete->execute(array(':id'=> $id));
@@ -237,12 +239,13 @@ public function get_utilisateur_fiche()
         die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
     }
     return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
 }
 
 public function get_utilisateur_fiche_admin()
 {
     try {
-        $id = $_GET["id"];
+        $id = $_POST["id"];
 
         $requete = $this->bd->prepare('SELECT * FROM utilisateur WHERE idUtilisateur = :id');
         $requete->execute(array(':id'=> $id));
@@ -321,7 +324,7 @@ public function get_livre_ajout()
 
 public function get_livre_update()
 {
-    $choixLivre = $_GET["id"];
+    $choixLivre = $_POST["id"];
     {
         try {
             $requete = $this->bd->prepare("SELECT * FROM livres WHERE Id_Livre = :i ");
@@ -357,7 +360,7 @@ public function get_livre_update_requete()
 
 public function get_livre_delete()
 {
-    $choixLivre = $_GET["id"];
+    $choixLivre = $_POST["id"];
     {
         try {
             $requete = $this->bd->prepare("DELETE FROM livres WHERE Id_Livre = :i ");
@@ -472,7 +475,7 @@ public function get_fournisseur_ajout()
 
 public function get_fournisseur_update()
 {
-    $choixFournisseur = $_GET["id"];
+    $choixFournisseur = $_POST["id"];
     {
         try {
             $requete = $this->bd->prepare("SELECT * FROM fournisseurs WHERE Id_fournisseur = :i ");
@@ -508,7 +511,7 @@ public function get_fournisseur_update_requete()
 
 public function get_fournisseur_delete()
 {
-    $choixFournisseur = $_GET["id"];
+    $choixFournisseur = $_POST["id"];
     {
         try {
             $requete = $this->bd->prepare("DELETE FROM fournisseurs WHERE Id_fournisseur = :i ");

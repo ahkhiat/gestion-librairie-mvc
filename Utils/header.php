@@ -64,11 +64,11 @@ session_start();
         </li>
 
         <li class="nav-item"> <!--   Display name's initials & click to update  ----->
-            <a class="nav-link" href="?controller=utilisateurs&action=utilisateur_fiche"><?php if(isset ($_SESSION["nom"])) {echo "<strong>" . substr($_SESSION["prenom"], 0, 1) . substr($_SESSION["nom"], 0, 1) . "</strong>";}?> </a>
+            <a class="nav-link" href="?controller=utilisateurs&action=utilisateur_fiche"><?php if(isset ($_SESSION["id"])) {echo "<strong>" . substr($_SESSION["prenom"], 0, 1) . substr($_SESSION["nom"], 0, 1) . "</strong>";}?> </a>
         </li> 
         <li>
           <?php  // -------------- Login & logout link ------------------
-              if(isset ($_SESSION["nom"]))
+              if(isset ($_SESSION["id"]))
               {
                 echo "<a class='nav-link' href='?controller=home&action=deconnexion'>Deconnexion</a>";
               } else {

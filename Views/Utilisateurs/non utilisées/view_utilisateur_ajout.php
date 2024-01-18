@@ -34,9 +34,10 @@
   <label for="exampleInputEmail1">Statut</label>
 
     <!-- <input type="text" name="statut" class="form-control" id="statut" aria-describedby="statut" > -->
-  <select class="form-control" name="statut">
-    <option>Admin</option>
-    <option>Utilisateur</option>
+  <select class="form-control" name="Statut">
+    <option value="Admin">Admin</option>
+    <option value="Personnel">Personnel</option>
+    <option value="Utilisateur">Utilisateur</option>
   </select>
 
 </div>

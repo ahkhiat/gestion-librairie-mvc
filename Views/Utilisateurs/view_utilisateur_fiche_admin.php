@@ -125,9 +125,21 @@
         </div>
 
         <div class="d-flex justify-content-center mb-2">
-              <a href="?controller=utilisateurs&action=utilisateur_fiche_admin_update&id=<?=$utilisateur[0]->idUtilisateur?>"><button type="button" class="btn btn-primary">Modifier</button></a>
-              <a href="?controller=utilisateurs&action=delete_utilisateur&id=<?=$utilisateur[0]->idUtilisateur?>"><button type="button" class="btn btn-outline-danger ms-1" onclick="return confirmation()">Supprimer</button></a>
-        </div>
+        
+
+          <div class="d-flex flex-row">
+                <form action="?controller=utilisateurs&action=utilisateur_fiche_admin_update" method="POST">
+                    <input type="hidden" name="id" class="form-control" id="hide" value="<?php echo $utilisateur[0]->idUtilisateur ?>">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </form>
+                <form action="?controller=utilisateurs&action=delete_utilisateur" method="POST">
+                    <input type="hidden" name="id" class="form-control" id="hide" value="<?php echo $utilisateur[0]->idUtilisateur ?>">
+                    <button type="submit" class="btn btn-outline-danger" onclick="return confirmation()">Supprimer</button>
+                </form>
+            </div>
+
+              
+            </div>
         <!--
         <div class="row">
           <div class="col-md-6">

@@ -10,9 +10,9 @@
           <div class="card-body text-center">
             <img src="./Content/img/profile.png" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3"><?php echo $_SESSION["prenom"] . "&nbsp" . $_SESSION["nom"]; ?></h5>
-            <p class="text-muted mb-1"><?php echo $_SESSION["statut"] ?></p>
-            <p class="text-muted mb-4"><?php echo $_SESSION["localite"] ?></p>
+            <h5 class="my-3"><?php echo $utilisateur[0]->prenom . "&nbsp" . $utilisateur[0]->nom; ?></h5>
+            <p class="text-muted mb-1"><?php echo $utilisateur[0]->Statut ?></p>
+            <p class="text-muted mb-4"><?php echo $utilisateur[0]->localite ?></p>
             
           </div>
         </div>
@@ -22,17 +22,17 @@
               
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="bi bi-github" style="color: #333333;"></i>
-                <input type="text" name="github" class="form-control w-50" id="github" aria-describedby="github" value="<?php echo $_SESSION["github"] ?>">
+                <input type="text" name="github" class="form-control w-50" id="github" value="<?php echo $utilisateur[0]->github ?>">
 
             </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="bi bi-instagram fa-lg" style="color: #ac2bac;"></i>
-                <input type="text" name="insta" class="form-control w-50" id="insta" aria-describedby="insta" value="<?php echo $_SESSION["insta"] ?>">
+                <input type="text" name="insta" class="form-control w-50" id="insta" value="<?php echo $utilisateur[0]->insta ?>">
 
             </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="bi bi-twitter-x fa-lg" style="color: #55acee;"></i>
-                <input type="text" name="twitter" class="form-control w-50" id="twitter" aria-describedby="twitter" value="<?php echo $_SESSION["twitter"] ?>">
+                <input type="text" name="twitter" class="form-control w-50" id="twitter" value="<?php echo $utilisateur[0]->twitter ?>">
 
             </li>
               
@@ -49,7 +49,7 @@
                 <p class="mb-0">Nom</p>
               </div>
               <div class="col-sm-9">
-                <input type="text" name="nom" class="form-control" id="nom" aria-describedby="nom" value="<?php echo $_SESSION["nom"] ?>">
+                <input type="text" name="nom" class="form-control" id="nom" value="<?php echo $utilisateur[0]->nom ?>">
               </div>
             </div>
 
@@ -60,7 +60,7 @@
                 <p class="mb-0">Prénom</p>
               </div>
               <div class="col-sm-9">
-              <input type="text" name="prenom" class="form-control" id="prenom" aria-describedby="prenom" value="<?php echo $_SESSION["prenom"] ?>">
+              <input type="text" name="prenom" class="form-control" id="prenom" value="<?php echo $utilisateur[0]->prenom ?>">
               </div>
             </div>
 
@@ -71,7 +71,7 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-              <input type="text" name="email" class="form-control" id="email" aria-describedby="email" value="<?php echo $_SESSION["email"] ?>">
+              <input type="text" name="email" class="form-control" id="email"  value="<?php echo $utilisateur[0]->email ?>">
               </div>
             </div>
 
@@ -82,7 +82,7 @@
                 <p class="mb-0">Date de naissance</p>
               </div>
               <div class="col-sm-9">
-              <input type="date" name="date_naissance" class="form-control" id="date_naissance" value="<?php echo $_SESSION["date_naissance"] ?>">
+              <input type="date" name="date_naissance" class="form-control" id="date_naissance" value="<?php echo $utilisateur[0]->date_naissance ?>">
               </div>
             </div>
             
@@ -93,7 +93,7 @@
                 <p class="mb-0">Téléphone</p>
               </div>
               <div class="col-sm-9">
-              <input type="text" name="tel" class="form-control" id="tel" aria-describedby="tel" value="<?php echo $_SESSION["tel"] ?>">
+              <input type="text" name="tel" class="form-control" id="tel"  value="<?php echo $utilisateur[0]->tel ?>">
               </div>
             </div>
             <hr>
@@ -102,7 +102,7 @@
                 <p class="mb-0">Adresse</p>
               </div>
               <div class="col-sm-9">
-              <input type="text" name="adresse" class="form-control" id="adresse" aria-describedby="adresse" value="<?php echo $_SESSION["adresse"] ?>">
+              <input type="text" name="adresse" class="form-control" id="adresse" value="<?php echo $utilisateur[0]->adresse ?>">
               </div>
             </div>
             <hr>
@@ -111,7 +111,7 @@
                 <p class="mb-0">Code postal</p>
               </div>
               <div class="col-sm-9">
-              <input type="text" name="code_postal" class="form-control" id="code_postal" aria-describedby="code_postal" value="<?php echo $_SESSION["code_postal"] ?>">
+              <input type="text" name="code_postal" class="form-control" id="code_postal" value="<?php echo $utilisateur[0]->code_postal ?>">
               </div>
             </div>
             <hr>
@@ -120,7 +120,7 @@
                 <p class="mb-0">Localité</p>
               </div>
               <div class="col-sm-9">
-              <input type="text" name="localite" class="form-control" id="localite" aria-describedby="localite" value="<?php echo $_SESSION["localite"] ?>">
+              <input type="text" name="localite" class="form-control" id="localite" value="<?php echo $utilisateur[0]->localite ?>">
               </div>
             </div>
             <hr>
@@ -129,7 +129,7 @@
                 <p class="mb-0">Statut</p>
               </div>
               <div class="col-sm-9">
-                <input type="text" name="Statut" class="form-control" id="Statut" value="<?php echo $_SESSION["statut"] ?>" disabled>
+                <input type="text" name="Statut" class="form-control" id="Statut" value="<?php echo $utilisateur[0]->Statut ?>" disabled>
               </div> 
               <input type="hidden" name="id" class="form-control" id="hide" value="<?php echo $_SESSION["id"] ?>">
                 
