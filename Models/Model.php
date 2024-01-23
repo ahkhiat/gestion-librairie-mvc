@@ -37,45 +37,42 @@ class Model
 
 
 
-public function get_register()
-{
-    // $nom = $_POST["nom"];
-    // $MdP = $_POST["MdP"];
-    if(isset($_POST['envoi'])) {
-        if (!empty($_POST['email']) AND !empty($_POST['MdP'])) {
-            $email = htmlspecialchars($_POST['email']);
-            $MdP = sha1($_POST['MdP']);
+// public function get_register()
+// {
+//     if(isset($_POST['envoi'])) {
+//         if (!empty($_POST['email']) AND !empty($_POST['MdP'])) {
+//             $email = validData($_POST['email']);
+//             $MdP = md5($_POST['MdP']);
 
-                try {
-                    $insertUser = $this->bd->prepare('INSERT INTO utilisateur(email, MdP) VALUES(:e, :p');
-                    $insertUser->execute(array($nom, $MdP));
+//                 try {
+//                     $insertUser = $this->bd->prepare('INSERT INTO utilisateur(email, MdP) VALUES(:e, :p');
+//                     $insertUser->execute(array($nom, $MdP));
 
-                    $requete = $this->bd->prepare('SELECT email, MdP FROM utilisateur WHERE email = :e AND MdP = :p');
-                    $requete->execute(array(':e'=> $email, ':p'=> $MdP));
-                    }
-                catch (PDOException $e) {
-                    die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
-                    }
-                return $requete->fetchAll(PDO::FETCH_OBJ);
+//                     $requete = $this->bd->prepare('SELECT email, MdP FROM utilisateur WHERE email = :e AND MdP = :p');
+//                     $requete->execute(array(':e'=> $email, ':p'=> $MdP));
+//                     }
+//                 catch (PDOException $e) {
+//                     die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+//                     }
+//                 return $requete->fetchAll(PDO::FETCH_OBJ);
 
-            if (!$requete->rowCount() > 0) {
-                $_SESSION['email'] = $email;
-                $_SESSION['MdP'] = $MdP;
-                $_SESSION['id'] = $requete->fetch()['id'];
-            }
-            echo $_SESSION['id'];
+//             if (!$requete->rowCount() > 0) {
+//                 $_SESSION['email'] = $email;
+//                 $_SESSION['MdP'] = $MdP;
+//                 $_SESSION['id'] = $requete->fetch()['id'];
+//             }
+//             echo $_SESSION['id'];
             
-        } else {
-    echo "Veuillez completer tous les champs";
-        }
-    }
-}
+//         } else {
+//     echo "Veuillez completer tous les champs";
+//         }
+//     }
+// }
 
 public function get_connexion()
-    
     {
         try {
-            $email = $_POST["email"];
+            $email = validData($_POST['email']);
             $MdP = md5($_POST["MdP"]);
             $requete = $this->bd->prepare("SELECT * FROM utilisateur  WHERE email = :e AND MdP = :p");
             $requete->execute(array(':e'=> $email, ':p'=> $MdP));
@@ -90,13 +87,15 @@ public function get_connexion()
     public function get_register_requete()
 {
     {
-
+        $email = validData($_POST['email']);
+        $nom = validData($_POST['nom']);
+        $prenom = validData($_POST['prenom']);
 
         try {
             
             $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, email ,nom, prenom, date_naissance,
                                                                 MdP, Statut) VALUES (NULL, :e, :n, :p, :a, :mdp, NULL)");
-            $requete->execute(array(':e'=> $_POST["email"],':n'=> $_POST["nom"], ':p'=> $_POST["prenom"], 
+            $requete->execute(array(':e'=> $email,':n'=> $nom, ':p'=> $prenom, 
                                     ':a'=> $_POST["date_naissance"], ':mdp'=> md5($_POST["MdP"])));
         
             
@@ -614,11 +613,19 @@ public function get_fournisseur_pays_result()
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
 }
+//#################################################################################################
 // ----------------------------------PARTIE COMMANDES--------------------------------------------//
+//#################################################################################################
+
 public function get_all_commandes()
 {
     try {
-        $requete = $this->bd->prepare('SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre ORDER BY Titre_livre ASC
+        $requete = $this->bd->prepare('SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires, U.prenom
+                                        FROM commander C 
+                                        JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur 
+                                        JOIN livres L ON C.Id_Livre = L.Id_Livre 
+                                        JOIN utilisateur U ON C.idUtilisateur = U.idUtilisateur
+                                        ORDER BY Titre_livre ASC
         ');
         $requete->execute();
         
@@ -717,7 +724,24 @@ public function get_commande_date_result()
         return $requete->fetchAll(PDO::FETCH_OBJ);
     }
 }
-
+public function get_commande_ajout()
+{
+    {
+        try {
+            
+            $requete = $this->bd->prepare("INSERT INTO commander (id_commande, Id_Livre, Id_fournisseur, Date_achat, Prix_achat, Nbr_exemplaires, idUtilisateur) 
+                                            VALUES (NULL, :idL, :idF, :d, :px, :nbr, :u)");
+            $requete->execute(array(':idL'=> $_POST["choixLivre"], ':idF'=> $_POST["choixFournisseur"], 
+                                    ':d'=> date("Y-m-d"), ':px' => $_POST["prix"], 
+                                    ':nbr'=> $_POST["quantite"], ':u'=> $_SESSION["id"]));
+        
+            
+        } catch (PDOException $e) {
+            die('Erreur [' . $e->getCode() . '] : ' . $e->getMessage() . '</p>');
+        }
+        return $requete->fetchAll(PDO::FETCH_OBJ);
+    }
+}
 
 
 

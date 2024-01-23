@@ -5,7 +5,7 @@
 <form method="POST" action="?controller=home&action=register_requete">
 <div class="form-group">
     <label for="exampleInputEmail1">Email*</label>
-    <input type="text" class="form-control" id="email" aria-describedby="email" name="email" required>
+    <input type="text" class="form-control" id="email" name="email" required>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Nom*</label>

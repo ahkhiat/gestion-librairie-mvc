@@ -1,5 +1,6 @@
 <?php
 
+var_dump($register);
 
 $_SESSION["email"] = $register[0]->email;
 $_SESSION["nom"] = $register[0]->nom;
@@ -25,7 +26,7 @@ $_SESSION["Date"] = $register[0]->Date;
 <h4>Bonjour <strong><?php echo $_SESSION["prenom"]; ?></strong>, votre compte est crée ! </h4>
 </div>
 
-<script>setTimeout(() => {
+<!-- <script>setTimeout(() => {
 window.location.href = '?controller=home&action=home';
 
-}, 2000);</script>
+}, 2000);</script> -->

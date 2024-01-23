@@ -9,6 +9,7 @@
 require_once('Models/Model.php');
 require_once('Controllers/Controller.php');
 require_once('Utils/header.php');
+require_once('Utils/fonctions.php');
 
 $controllers=['home','livres', 'fournisseurs', 'commandes', 'utilisateurs'];
 $controller_default='home';

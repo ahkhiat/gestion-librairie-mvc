@@ -17,7 +17,7 @@ $_SESSION["insta"] = $login[0]->insta;
 $_SESSION["twitter"] = $login[0]->twitter;
 $_SESSION["Date"] = $login[0]->Date;
 
-
+// print_r($_SESSION);
 ?>
 
 <div class="w-25 mx-auto mt-5">

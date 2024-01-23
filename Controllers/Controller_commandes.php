@@ -61,6 +61,20 @@ class Controller_commandes extends Controller
         $this->render("commande_date_result",$data);
 
     }
+    public function action_commande_ajout()
+    {
+        $m=Model::get_model();
+        $data=['titres'=>$m->get_all_livres(),
+                'fournisseurs'=>$m->get_all_fournisseurs()];
+        $this->render("commande_ajout",$data);
 
+    }
+    public function action_commande_ajout_requete()
+    {
+        $m=Model::get_model();
+        $data=['titres'=>$m->get_commande_ajout() ];
+        $this->render("commande_ajout_result",$data);
+
+    }
     
 }

@@ -25,11 +25,16 @@ class Controller_home extends Controller
     }
     public function action_register_requete()
     {
-        // if(empty($_POST["MdP"]) && $_POST["MdP"] == $_POST["MdP2"]) 
         
         $m=Model::get_model();
         $data=['register'=>$m->get_register_requete()];
-        $data=['register'=>$m->get_connexion()];
+        if($data){
+
+            $email=validData($_POST['email']);
+            $data=['register'=>$m->get_connexion($email)];
+
+        }
+        // $data=['register'=>$m->get_connexion()];
         $this->render("register_done", $data);
         
     }
@@ -45,7 +50,7 @@ class Controller_home extends Controller
     {
         $m=Model::get_model();
         $data=['login'=>$m->get_connexion()];
-        $this->render("login", $data);
+        $this->render("connexion_requete", $data);
         
     }
    

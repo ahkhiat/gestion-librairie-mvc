@@ -11,7 +11,5 @@ if (isset($_SESSION['id']))
     }   else {
         echo "Veuillez vous connecter";
     }
-
-    
     ?>
 </div>
