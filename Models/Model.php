@@ -94,7 +94,7 @@ public function get_connexion()
         try {
             
             $requete = $this->bd->prepare("INSERT INTO utilisateur (idUtilisateur, email ,nom, prenom, date_naissance,
-                                                                MdP, Statut) VALUES (NULL, :e, :n, :p, :a, :mdp, NULL)");
+                                                                MdP, Statut) VALUES (NULL, :e, :n, :p, :a, :mdp, 'Utilisateur')");
             $requete->execute(array(':e'=> $email,':n'=> $nom, ':p'=> $prenom, 
                                     ':a'=> $_POST["date_naissance"], ':mdp'=> md5($_POST["MdP"])));
         
@@ -620,7 +620,7 @@ public function get_fournisseur_pays_result()
 public function get_all_commandes()
 {
     try {
-        $requete = $this->bd->prepare('SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires, U.prenom
+        $requete = $this->bd->prepare('SELECT id, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires, U.prenom
                                         FROM commander C 
                                         JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur 
                                         JOIN livres L ON C.Id_Livre = L.Id_Livre 
@@ -655,7 +655,7 @@ public function get_commande_editeur_result()
     $choixCommande = $_POST["choixCommande"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Editeur = :t ORDER BY Titre_livre ASC");
+            $requete = $this->bd->prepare("SELECT id, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Editeur = :t ORDER BY Titre_livre ASC");
             $requete->execute(array(':t'=> $choixCommande));
             
         } catch (PDOException $e) {
@@ -685,7 +685,7 @@ public function get_commande_fournisseur_result()
     $choixCommande = $_POST["choixCommande"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Raison_sociale = :t ORDER BY Titre_livre ASC");
+            $requete = $this->bd->prepare("SELECT id, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Raison_sociale = :t ORDER BY Titre_livre ASC");
             $requete->execute(array(':t'=> $choixCommande));
             
         } catch (PDOException $e) {
@@ -715,7 +715,7 @@ public function get_commande_date_result()
     $choixCommande = $_POST["choixCommande"];
     {
         try {
-            $requete = $this->bd->prepare("SELECT id_commande, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Date_achat = :t ORDER BY Titre_livre ASC");
+            $requete = $this->bd->prepare("SELECT id, L.Titre_livre, F.Raison_sociale, Editeur,  Date_achat, Prix_achat, Nbr_exemplaires FROM commander C JOIN fournisseurs F ON C.Id_fournisseur = F.Id_fournisseur JOIN livres L ON C.Id_Livre = L.Id_Livre WHERE Date_achat = :t ORDER BY Titre_livre ASC");
             $requete->execute(array(':t'=> $choixCommande));
             
         } catch (PDOException $e) {
@@ -729,7 +729,7 @@ public function get_commande_ajout()
     {
         try {
             
-            $requete = $this->bd->prepare("INSERT INTO commander (id_commande, Id_Livre, Id_fournisseur, Date_achat, Prix_achat, Nbr_exemplaires, idUtilisateur) 
+            $requete = $this->bd->prepare("INSERT INTO commander (id, Id_Livre, Id_fournisseur, Date_achat, Prix_achat, Nbr_exemplaires, idUtilisateur) 
                                             VALUES (NULL, :idL, :idF, :d, :px, :nbr, :u)");
             $requete->execute(array(':idL'=> $_POST["choixLivre"], ':idF'=> $_POST["choixFournisseur"], 
                                     ':d'=> date("Y-m-d"), ':px' => $_POST["prix"], 

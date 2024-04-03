@@ -38,14 +38,14 @@
         <td style="display:none;"><?=$l->Id_Livre?></td>
         <td width="20%"><?=$l->ISBN?></td>
         <td width="100%"><?=$l->Titre_livre?></td>
-        <td><?=$l->Theme_livre?></td>
-        <td><?=$l->Nbr_pages_livre?></td>
+        <td><?=$l->theme_livre?></td>
+        <td><?=$l->nbr_pages_livre?></td>
         <td><?=$l->Format_livre?></td>
         <td><?=$l->Nom_auteur?></td>
         <td><?=$l->Prenom_auteur?></td>
         <td><?=$l->Editeur?></td>
-        <td><?=$l->Annee_edition?></td>
-        <td><?=$l->Prix_vente?></td>
+        <td><?=$l->annee_edition?></td>
+        <td><?=$l->prix_vente?></td>
         <td><?=$l->Langue_livre?></td>
 
         <?php 

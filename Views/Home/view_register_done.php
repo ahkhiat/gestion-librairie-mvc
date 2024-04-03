@@ -1,6 +1,6 @@
 <?php
 
-var_dump($register);
+// var_dump($register);
 
 $_SESSION["email"] = $register[0]->email;
 $_SESSION["nom"] = $register[0]->nom;

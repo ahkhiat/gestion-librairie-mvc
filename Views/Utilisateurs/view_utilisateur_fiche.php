@@ -17,7 +17,7 @@
                   <button type="submit">Enregistrer</button>
                 </form>
             <h5 class="my-3"><?php echo $utilisateur[0]->prenom . "&nbsp" . $utilisateur[0]->nom; ?></h5>
-            <p class="text-muted mb-1"><?php echo $utilisateur[0]->Statut ?></p>
+            <p class="text-muted mb-1"><?php echo $utilisateur[0]->statut ?></p>
             <p class="text-muted mb-4"><?php echo $utilisateur[0]->localite ?></p>
           </div>
         </div>
@@ -25,7 +25,7 @@
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3">
               
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <!-- <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="bi bi-github" style="color: #333333;"></i>
                 <p class="mb-0"><a href="http://www.github.com/<?= $utilisateur[0]->github ?>" target="_blank" style="text-decoration : none; color : inherit"><?= $utilisateur[0]->github ?></a></p>
               </li>
@@ -36,7 +36,7 @@
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="bi bi-twitter-x fa-lg" style="color: #55acee;"></i>
                 <p class="mb-0"><a href="http://www.twitter.com/<?= $utilisateur[0]->twitter ?>" target="_blank" style="text-decoration : none; color : inherit"><?= $utilisateur[0]->twitter ?></a></p>
-              </li>
+              </li> -->
               
             </ul>
           </div>
